@@ -1,0 +1,8 @@
+export { ReactComponent as LeverBi } from './LeverBi.svg'
+export { ReactComponent as DashboardIcon } from './DashboardIcon.svg'
+export { ReactComponent as AdvertiseIcon } from './AdvertiseIcon.svg'
+export { ReactComponent as GuideIcon } from './GuideIcon.svg'
+export { ReactComponent as ArrowBottom } from './ArrowBottom.svg'
+export { ReactComponent as Alert } from './Alert.svg'
+export { ReactComponent as Setting } from './Setting.svg'
+export { ReactComponent as Profile } from './Profile.svg'
