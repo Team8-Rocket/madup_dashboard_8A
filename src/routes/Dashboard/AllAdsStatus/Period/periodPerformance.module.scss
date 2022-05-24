@@ -31,25 +31,15 @@
         display: flex;
         justify-content: space-between;
         padding-top: 10px;
-      }
-
-      .leftText {
-        margin: 18px auto auto 40px;
 
         p {
           height: 19px;
-          margin: 10px 0 0;
           font-size: 16px;
           font-weight: 700;
           line-height: 19px;
           /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
           color: #3a474e;
         }
-      }
-
-      .rightText {
-        display: flex;
-        align-items: center;
 
         span {
           margin-left: 5px;
