@@ -1,10 +1,11 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { BigNumber } from 'bignumber.js'
 
 import data from 'config/trend-data-set.json'
 import { IItem, IItemResult } from 'types/dashboard'
 
 import styles from './periodPerformance.module.scss'
+import { cx } from 'styles'
 
 const newData = data.report.daily.map((item) => {
   const bigNum: BigNumber = new BigNumber(item.roas).dividedBy(100).multipliedBy(item.cost)
@@ -73,18 +74,23 @@ const PeriodPerformance = () => {
   }
   const currentItems = getValues(calculatedCurrent)
 
+  const [isIncrease, setIsIncrease] = useState<Boolean>()
+
   const periodItems = useMemo(() => {
     return (
       <ul>
         {periodItem.map((item: number, index: number) => {
+          if (item < 0.0) {
+            setIsIncrease(false)
+          }
           return (
             <li key={thickFormat[index]} className={styles.container}>
-              <div>
+              <div className={styles.leftText}>
                 <span>{thickFormat[index]}</span>
                 <p>{currentItems[index]}%</p>
               </div>
-              <div>
-                <div>▼</div>
+              <div className={styles.rightText}>
+                <span>▼</span>
                 <span>{item}</span>
               </div>
             </li>

@@ -1,9 +1,43 @@
 @use '/src/styles/constants/colors';
 
 .container {
+  position: relative;
   width: 304px;
   height: 80px;
-  padding: 18px 40px;
+  margin: 20px;
   border: 1px solid #edeff1;
   border-radius: 15px;
+
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+    color: #94a2ad;
+  }
+
+  .leftText {
+    margin: 18px auto auto 40px;
+
+    p {
+      width: 40px;
+      height: 19px;
+      margin: 10px 0 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 19px;
+      /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+      color: #3a474e;
+    }
+  }
+
+  .rightText {
+    position: absolute;
+    right: 40px;
+    bottom: 18px;
+
+    span {
+      margin-left: 5px;
+    }
+  }
 }
