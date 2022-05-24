@@ -44,7 +44,7 @@ export const minusItem = (current: IItemResult, past: IItemResult) => {
 }
 
 // 기간에 따른 차이 증감 결과
-export const usePeriodItems = (days: number, data: IItem[]) => {
+export const usePeriodItems = (data: IItem[], days: number) => {
   const currentArray = data.slice(-days)
   const pastArray = data.slice(-days * 2, -days)
 
@@ -65,13 +65,14 @@ export const getValues = (obj: object) => {
 // 숫자 단위 변환
 export const unitProcessedPeriodItems = (arr: number[]) => {
   const unitWords = ['', '만', '억', '조', '경']
-  return arr.map((item: number, index: number) => {
-    const itemLength = String(item).split('.')[0].length - 1
+  return arr.map((item: number) => {
+    const absItem = Math.abs(item)
+    const itemLength = String(absItem).split('.')[0].length - 1
     const remain = itemLength % 4
     const share = Math.floor(itemLength / 4)
-    if (share === 0) return String(Math.floor(item)) + unitWords[share]
-    const forOneSpotItem = String(item).slice(0, -share * 4 + 1)
+    if (share === 0) return Math.floor(absItem).toLocaleString() + unitWords[share]
+    const forOneSpotItem = String(absItem).slice(0, -share * 4 + 1)
     if (remain === 0) return `${forOneSpotItem[0]}.${forOneSpotItem[1]}${unitWords[share]}`
-    return String(Math.floor(item)).slice(0, -share * 4) + unitWords[share]
+    return Math.floor(absItem / 10000 ** share).toLocaleString() + unitWords[share]
   })
 }

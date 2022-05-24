@@ -10,7 +10,7 @@ const Dashboard = () => {
         <h1>대시보드 or 광고관리</h1>
         <p>날짜 or x</p>
       </header>
-      <section>
+      <section className={styles.dashboardSection}>
         <AllAdsStatus />
         <MediaAds />
       </section>
