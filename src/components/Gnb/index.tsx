@@ -1,11 +1,11 @@
 import styles from './gnb.module.scss'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Gnb = () => {
   return (
     <div>
       <div className={styles.gnbWrapper}>
-        <header>head</header>
+        <h1>head</h1>
         <nav>
           <ul>
             <li>

@@ -1,0 +1,117 @@
+@use 'styles/constants/colors';
+
+.advertiseWrapper {
+  padding: 0 40px;
+  padding-bottom: 80px;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding: 25px 40px;
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .container {
+    width: 1039px;
+    padding: 40px 40px 20px;
+    background-color: colors.$WHITE;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 4%);
+
+    .buttonList {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+
+      button {
+        width: 108px;
+        height: 40px;
+        font-size: 14px;
+        font-weight: 700;
+        border: 1px solid colors.$GRAY100;
+        border-radius: 10px;
+      }
+
+      .adListButton {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 123px;
+        padding: 12px 16px 12px 20px;
+
+        svg {
+          path {
+            transform: rotate(360);
+          }
+          position: absolute;
+          right: 16px;
+        }
+      }
+
+      .adAddButton {
+        color: colors.$WHITE;
+        background-color: #586cf5;
+        border: none;
+      }
+
+      .options {
+        position: absolute;
+        top: 45px;
+        flex-direction: column;
+
+        button {
+          z-index: 10;
+          display: none;
+          width: 123px;
+          padding-left: 20px;
+          color: colors.$GRAY300;
+          text-align: left;
+          background-color: colors.$WHITE;
+          border-radius: 0;
+
+          &:hover {
+            color: colors.$GRAY800;
+            background-color: #f4f4f4;
+          }
+        }
+
+        button:first-child {
+          border-bottom: none;
+          border-radius: 10px 10px 0 0;
+        }
+
+        button:nth-child(2) {
+          border-bottom: none;
+        }
+
+        button:last-child {
+          border-radius: 0 0 10px 10px;
+        }
+
+        button + button {
+          border-top: none;
+        }
+      }
+
+      .options,
+      .open button {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .adList {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+
+      // div + div {
+      //   margin-left: 20px;
+      // }
+    }
+  }
+}
