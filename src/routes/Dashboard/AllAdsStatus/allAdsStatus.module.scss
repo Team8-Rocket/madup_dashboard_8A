@@ -1,0 +1,14 @@
+@use '/src/styles/constants/colors';
+
+.container {
+  width: 1120px;
+  background-color: #f6f7f8;
+
+  .contents {
+    width: 1039px;
+    height: 654px;
+    padding: 40px;
+    background-color: colors.$WHITE;
+    border-radius: 20px;
+  }
+}
