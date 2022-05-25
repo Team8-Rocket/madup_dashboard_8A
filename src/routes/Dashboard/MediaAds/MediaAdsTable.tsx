@@ -16,44 +16,41 @@ const MediaAdsTable = ({ dateFilterData }: Props) => {
     click: 0,
   })
 
-  const koChannel: any = {
-    facebook: '페이스북',
-    naver: '네이버',
-    google: '구글',
-    kakao: '카카오',
+  const changeKorea = (channel: string) => {
+    switch (channel) {
+      case 'facebook':
+        return '페이스북'
+      case 'naver':
+        return '네이버'
+      case 'google':
+        return '구글'
+      case 'kakao':
+        return '카카오'
+      default:
+        return '총합'
+    }
   }
 
-  const calcTotal = (channel: string) => {
-    const channelData = dateFilterData.filter((data) => data.channel === channel)
+  const calcTotal = (channel?: string) => {
+    const channelData = (channel && dateFilterData.filter((data) => data.channel === channel)) || dateFilterData
     const newArr = { channel: '', cost: 0, imp: 0, click: 0, roas: 0 }
-    const totaldata = { channel: '총합', cost: 0, roas: 0, imp: 0, click: 0 }
 
     channelData.map((item, i) => {
-      newArr.channel = koChannel[item.channel]
+      newArr.channel = changeKorea(item.channel)
       newArr.cost += item.cost
       newArr.imp += item.imp
       newArr.click += item.click
       newArr.roas += item.roas
+    })
 
-      // totaldata.cost += item.cost
-      // totaldata.imp += item.imp
-      // totaldata.click += item.click
-      // totaldata.roas += item.roas
-    })
-    setChannelTotalData((prev) => {
-      console.log(' prev.cost:', prev.cost, 'total :', totaldata.cost)
-      return { ...prev, cost: prev.cost + newArr.cost }
-    })
+    newArr.roas /= channelData.length
+
     return newArr
   }
   useEffect(() => {
-    // getData()
     setTableData([calcTotal('facebook'), calcTotal('naver'), calcTotal('google'), calcTotal('kakao')])
+    setChannelTotalData(calcTotal())
   }, [])
-
-  // const getData = () => {
-
-  // }
 
   return (
     <div className={styles.tableWrap}>
@@ -71,7 +68,7 @@ const MediaAdsTable = ({ dateFilterData }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {tableData.map((channelData, i) => (
+          {tableData.map((channelData) => (
             <tr key={channelData.channel}>
               <td className={styles.mediaDataChannel}>{channelData.channel}</td>
               <td className={styles.mediaData}>{channelData.cost}원</td>
@@ -83,15 +80,15 @@ const MediaAdsTable = ({ dateFilterData }: Props) => {
               <td className={styles.mediaData}>{Math.floor(channelData.cost / channelData.click)}원</td>
             </tr>
           ))}
-          <tr>
+          <tr className={styles.totalData}>
             <td className={styles.mediaDataChannel}>총합</td>
             <td className={styles.mediaData}>{channelTotalData.cost}원</td>
-            <td className={styles.mediaData} />
-            <td className={styles.mediaData} />
-            <td className={styles.mediaData} />
-            <td className={styles.mediaData} />
-            <td className={styles.mediaData} />
-            <td className={styles.mediaData} />
+            <td className={styles.mediaData}>{Math.floor((channelTotalData.roas / 100) * channelTotalData.cost)}원</td>
+            <td className={styles.mediaData}>{(channelTotalData.roas / 4).toFixed(2)}%</td>
+            <td className={styles.mediaData}>{channelTotalData.imp}</td>
+            <td className={styles.mediaData}>{channelTotalData.click}</td>
+            <td className={styles.mediaData}>{((channelTotalData.click / channelTotalData.imp) * 100).toFixed(2)}%</td>
+            <td className={styles.mediaData}>{Math.floor(channelTotalData.cost / channelTotalData.click)}원</td>
           </tr>
         </tbody>
       </table>
