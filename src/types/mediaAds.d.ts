@@ -27,21 +27,24 @@ export interface IMediaAds {
   roas: number
 }
 
-export type ITableData = {
+// export type ITableData = {
+//   channel: string
+//   cost: number
+//   sales: number
+//   roas: number
+//   imp: number
+//   click: number
+//   ctr: number
+//   cpc: number
+// }
+
+export interface ITableData {
   channel: string
   cost: number
-  sales: number
   roas: number
   imp: number
   click: number
-  ctr: number
-  cpc: number
 }
-
-export type TableData = Record<
-  string,
-  { channel: string; cost: number; sales: number; roas: number; imp: number; click: number; ctr: number; cpc: number }
->
 
 export interface IFilterData {
   channel: string

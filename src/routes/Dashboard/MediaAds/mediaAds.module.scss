@@ -19,17 +19,32 @@
     .tableWrap {
       padding: 20px 0;
       overflow-x: auto;
+      font-size: 12px;
+
+      tr {
+        border-bottom: 1px solid #edeff1;
+      }
 
       .table {
         min-width: 800px;
-        border: 1px solid #aaaaaa;
+        border-top: 1px solid #edeff1;
+        border-bottom: 1px solid #edeff1;
 
-        .title {
+        .tableTitle {
           width: 300px;
+          padding: 10px 0;
+          color: #94a2ad;
+          text-align: center;
+        }
+
+        .mediaDataChannel {
+          padding: 12px 0 14px;
           text-align: center;
         }
 
         .mediaData {
+          padding: 12px 0 14px;
+          font-weight: bold;
           text-align: center;
         }
       }
