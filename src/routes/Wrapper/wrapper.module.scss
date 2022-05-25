@@ -1,14 +1,10 @@
+@use '/src/styles/constants/colors';
+
 .wrapper {
   display: flex;
-  width: 1440px;
-  margin: 0 auto;
+}
 
-  .header {
-    width: 320px;
-  }
-
-  .content {
-    width: 1120px;
-    background-color: #f6f7f8;
-  }
+main {
+  width: calc(100% - 320px);
+  padding: 0 20px 20px;
 }

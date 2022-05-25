@@ -2,10 +2,10 @@ import { useMemo, useState, useRef, useEffect } from 'react'
 import cx from 'classnames'
 
 import styles from './advertise.module.scss'
-import { ArrowDown } from 'assets'
+import adListDataSet from '../../data/adListDataSet.json'
+import { ArrowDown } from '../../assets/svgs'
 
-import adListDataSet from 'data/adListDataSet.json'
-import AdItem from 'components/AdItem/AdItem'
+import AdItem from './AdItem'
 
 const Advertise = () => {
   const [showOptions, setShowOptions] = useState(false)

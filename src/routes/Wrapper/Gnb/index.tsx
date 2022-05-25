@@ -1,12 +1,12 @@
 import cx from 'classnames'
 import styles from './gnb.module.scss'
 import { NavLink, Outlet } from 'react-router-dom'
-import Dropdown from '../../Dropdown'
+import Dropdown from '../../../components/Dropdown'
 import { AdvertiseIcon, DashboardIcon, GuideIcon, LeverBi } from '../../../assets/svgs'
 
 const Gnb = () => {
   return (
-    <div className={styles.gnbWrapper}>
+    <aside className={styles.gnbWrapper}>
       <header>
         <LeverBi />
       </header>
@@ -48,7 +48,7 @@ const Gnb = () => {
           <span>이용약관</span>
         </div>
       </footer>
-    </div>
+    </aside>
   )
 }
 export default Gnb
