@@ -10,9 +10,9 @@ const Gnb = () => {
 
   return (
     <div className={styles.gnbWrapper}>
-      <section>
+      <div>
         <LeverBi />
-      </section>
+      </div>
       <nav>
         <div className={styles.service}>
           <h4>서비스</h4>
@@ -36,7 +36,7 @@ const Gnb = () => {
           </ul>
         </div>
       </nav>
-      <section>
+      <div>
         <div className={styles.guide}>
           <div className={styles.guideIcon}>
             <GuideIcon />
@@ -50,7 +50,7 @@ const Gnb = () => {
           <p>레버는 함께 만들어갑니다.</p>
           <span>이용약관</span>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

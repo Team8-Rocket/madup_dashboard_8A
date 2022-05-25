@@ -22,7 +22,6 @@ const Wrapper = () => {
         <Gnb />
       </aside>
       <main className={styles.content}>
-        <Gnb />
         <UserOption />
         {loading ? <Skeleton pathname={pathname} /> : <Outlet />}
       </main>
