@@ -41,7 +41,6 @@ const MediaAdsTable = ({ dateFilterData }: Props) => {
       // totaldata.roas += item.roas
     })
     setChannelTotalData((prev) => {
-      console.log(' prev.cost:', prev.cost, 'total :', totaldata.cost)
       return { ...prev, cost: prev.cost + newArr.cost }
     })
     return newArr
