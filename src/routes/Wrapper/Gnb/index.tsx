@@ -7,9 +7,9 @@ import { AdvertiseIcon, DashboardIcon, GuideIcon, LeverBi } from '../../../asset
 const Gnb = () => {
   return (
     <div className={styles.gnbWrapper}>
-      <header>
+      <section>
         <LeverBi />
-      </header>
+      </section>
       <nav>
         <div className={styles.service}>
           <h4>서비스</h4>
@@ -33,7 +33,7 @@ const Gnb = () => {
           </ul>
         </div>
       </nav>
-      <footer>
+      <section>
         <div className={styles.guide}>
           <div className={styles.guideIcon}>
             <GuideIcon />
@@ -47,7 +47,7 @@ const Gnb = () => {
           <p>레버는 함께 만들어갑니다.</p>
           <span>이용약관</span>
         </div>
-      </footer>
+      </section>
     </div>
   )
 }

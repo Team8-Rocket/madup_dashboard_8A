@@ -6,9 +6,9 @@ import styles from './wrapper.module.scss'
 const Wrapper = () => {
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
+      <aside className={styles.header}>
         <Gnb />
-      </header>
+      </aside>
       <main className={styles.content}>
         <UserOption />
         <Outlet />
