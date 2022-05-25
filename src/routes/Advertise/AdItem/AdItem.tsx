@@ -1,6 +1,6 @@
 import { memo } from 'react'
-
 import { IAdList } from 'types/adItem'
+
 import styles from './adItem.module.scss'
 
 import { unitProcessedPeriodItems } from 'services/allAdsStatus'
