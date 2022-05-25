@@ -1,78 +1,103 @@
-/* eslint-disable no-console */
-import { useEffect } from 'react'
+import { BigNumber } from 'bignumber.js'
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from 'victory'
-import { ChartData, IChartData } from '../../../types/mediaAds.d'
-import { dummydata } from './dummy'
 
-// import CHART_STYLE from './chartStyle'
+import { IMediaAds } from 'types/mediaAds'
+
+import CHART_STYLE from './chartStyle'
+import styles from './mediaAds.module.scss'
 
 interface Props {
-  // chartData: ChartData
-}
-const dataStructure = [
-  { value: 0, category: '광고비' },
-  { value: 0, category: '매출' },
-  { value: 0, category: '노출 수' },
-  { value: 0, category: '클릭 수' },
-  { value: 0, category: '전환 수' },
-]
-
-const init = {
-  facebook: [...dataStructure],
-  google: [...dataStructure],
-  kakao: [...dataStructure],
-  naver: [...dataStructure],
+  dateFilterData: IMediaAds[]
 }
 
-const getData = () => {
-  const data: ChartData = {
-    google: [...dataStructure],
-    facebook: [...dataStructure],
-    naver: [...dataStructure],
-    kakao: [...dataStructure],
+// const google = dataStructure.concat()
+
+const MediaAdsChart = ({ dateFilterData }: Props) => {
+  const result = (arr: IMediaAds[]) => {
+    const data: Record<string, { value: number; category: string }[]> = {
+      data: [
+        { value: 0, category: '광고비' },
+        { value: 0, category: '매출' },
+        { value: 0, category: '노출 수' },
+        { value: 0, category: '클릭 수' },
+        { value: 0, category: '전환 수' },
+      ],
+    }
+    return findCategory(data, arr)
+  }
+  const findCategory = (data: Record<string, { value: number; category: string }[]>, arr: IMediaAds[]) => {
+    arr.forEach((d) => {
+      const bigNum: BigNumber = new BigNumber(d.roas).dividedBy(100).multipliedBy(d.cost)
+      const sales = Math.round(bigNum.toNumber() * 100) / 100
+      data.data.find((item) => item.category === '광고비')!.value += d.cost
+      data.data.find((item) => item.category === '매출')!.value += sales
+      data.data.find((item) => item.category === '노출 수')!.value += d.imp
+      data.data.find((item) => item.category === '클릭 수')!.value += d.ctr
+      data.data.find((item) => item.category === '전환 수')!.value += d.cvr
+    })
+    return data
   }
 
-  // for (const key in data) {
-  //   console.log(key === dummydata[0].channel)
-  //   // if (key === dummydata[key]) {
-  //   //   data[key][0].value += dummydata[key].cost
-  //   //   data[key][1].value += dummydata[key].roas
-  //   // }
-  // }
+  const getFuck = () => {
+    const google = dateFilterData.filter((item: { channel: string }) => {
+      return item.channel === 'google'
+    })
+    const resultGoogle = result(google)
 
-  // dummydata.forEach((detaObj) => {
-  //   data[detaObj.channel].find((item) => item.category === '광고비')!.value += detaObj.cost
-  //   data[detaObj.channel].find((item) => item.category === '매출')!.value += detaObj.roas
-  //   data[detaObj.channel].find((item) => item.category === '노출 수')!.value += detaObj.imp
-  //   data[detaObj.channel].find((item) => item.category === '클릭 수')!.value += detaObj.ctr
-  //   data[detaObj.channel].find((item) => item.category === '전환 수')!.value += detaObj.cvr
-  // })
+    const naver = dateFilterData.filter((item: { channel: string }) => {
+      return item.channel === 'naver'
+    })
+    const resultNaver = result(naver)
 
-  // console.log(data)
-}
+    const facebook = dateFilterData.filter((item: { channel: string }) => {
+      return item.channel === 'facebook'
+    })
+    const resultFacebook = result(facebook)
 
-const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
+    const kakao = dateFilterData.filter((item: { channel: string }) => {
+      return item.channel === 'kakao'
+    })
+    const resultKakao = result(kakao)
 
-const MediaAdsChart = ({}: Props) => {
-  useEffect(() => {
-    getData()
-  }, [])
+    const total = result(dateFilterData)
+
+    return { resultNaver, resultKakao, resultFacebook, resultGoogle, total }
+  }
+
+  const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
+
+  const { resultNaver, resultKakao, resultFacebook, resultGoogle, total } = getFuck()
+
+  const percentCalculation = (arr: Record<string, { value: number; category: string }[]>) => {
+    const percent: { value: number; category: string }[] = []
+    total.data.forEach((item: { value: number; category: string }, index: number) => {
+      percent.push({ value: arr.data[index].value / item.value, category: item.category })
+    })
+    return percent
+  }
   return (
-    <div>
-      <VictoryChart width={1500} theme={VictoryTheme.material} domainPadding={90}>
+    <div className={styles.mediaAdChartWrap}>
+      <VictoryChart width={900} theme={VictoryTheme.material} domainPadding={20}>
         <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
         <VictoryAxis
           dependentAxis
           // tickFormat specifies how ticks should be displayed
-          tickFormat={(x) => `${x / 1000_000}k`}
+          tickFormat={(x) => `${x * 100}%`}
         />
         <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}>
-          {/* <VictoryBar data={chartData.google} x='category' y='value' /> */}
-          {/* <VictoryBar data={chartData.facebook} x='category' y='value' /> */}
-          {/* <VictoryBar data={chartData.naver} x='category' y='value' /> */}
-          {/* <VictoryBar data={chartData.kakao} x='category' y='value' cornerRadius={{ top: 4 }} /> */}
+          <VictoryBar data={percentCalculation(resultGoogle)} {...CHART_STYLE.bar} />
+          <VictoryBar data={percentCalculation(resultNaver)} {...CHART_STYLE.bar} />
+          <VictoryBar data={percentCalculation(resultFacebook)} {...CHART_STYLE.bar} />
+          <VictoryBar data={percentCalculation(resultKakao)} {...CHART_STYLE.bar} cornerRadius={{ top: 6 }} />
         </VictoryStack>
       </VictoryChart>
+
+      <div className={styles.chartInfo}>
+        <p className={styles.chartChannelInfo}>페이스북</p>
+        <p className={styles.chartChannelInfo}>네이버</p>
+        <p className={styles.chartChannelInfo}>구글</p>
+        <p className={styles.chartChannelInfo}>카카오</p>
+      </div>
     </div>
   )
 }
