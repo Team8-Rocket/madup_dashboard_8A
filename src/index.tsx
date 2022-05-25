@@ -6,6 +6,9 @@ import { Provider } from 'react-redux'
 import { persistStore } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 
+import { Provider } from 'react-redux'
+import { store } from './states'
+
 import './styles/index.scss'
 
 import Routes from './routes'
