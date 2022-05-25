@@ -62,19 +62,15 @@ export const usePeriodItems = (days: number) => {
   return result
 }
 
-// export const useSelectedDayItems = (fitData: IItem[]) => {
-//   const newData = useAppSelector(getData)
-//   const currentArray = newData.slice(-days)
-//   const pastArray = newData.slice(-days * 2, -days)
+export const useSelectedDayItems = (fitData: IItem[], fitPastData: IItem[]) => {
+  const calculatedCurrent = plusItems(fitData)
+  const calculatedPast = plusItems(fitPastData)
 
-//   const calculatedCurrent = plusItems(currentArray)
-//   const calculatedPast = plusItems(pastArray)
+  const periodItem = minusItem(calculatedCurrent, calculatedPast)
+  const result = { calculatedCurrent, periodItem }
 
-//   const periodItem = minusItem(calculatedCurrent, calculatedPast)
-//   const result = { calculatedCurrent, periodItem }
-
-//   return result
-// }
+  return result
+}
 
 // 객체에서 value만 추출
 export const getValues = (obj: object) => {
