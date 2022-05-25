@@ -8,11 +8,11 @@ import { IAds } from 'types/ads'
 
 import adListDataSet from 'data/adListDataSet.json'
 import AdItem from './AdItem/AdItem'
-import { changeSelectedOption } from 'store/adSlice'
+import { changeSelectedOption } from 'states/advertise'
 
 const Advertise = () => {
   const [showOptions, setShowOptions] = useState(false)
-  const { selectedOption } = useSelector((state: IAds) => state.adOption)
+  const { selectedOption } = useSelector((state: IAds) => state.advertise)
   const dispatch = useDispatch()
 
   const optionRef = useRef<HTMLUListElement>(null)

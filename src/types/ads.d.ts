@@ -1,5 +1,5 @@
 export interface IAds {
-  adOption: ISelectedOption
+  advertise: ISelectedOption
 }
 
 export interface ISelectedOption {

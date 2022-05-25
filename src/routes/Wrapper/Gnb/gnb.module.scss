@@ -1,3 +1,4 @@
+/* stylelint-disable scale-unlimited/declaration-strict-value */
 @use '/src/styles/constants/colors';
 
 .gnbWrapper {
@@ -113,7 +114,6 @@
       .guideContent {
         p {
           margin-bottom: 7px;
-          font-family: Roboto;
           font-size: 16px;
           font-style: normal;
           font-weight: 700;
@@ -122,7 +122,6 @@
         }
 
         span {
-          font-family: Roboto;
           font-size: 12px;
           font-style: normal;
           font-weight: 500;
@@ -136,7 +135,6 @@
       padding-left: 20px;
 
       p {
-        font-family: Roboto;
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
@@ -145,7 +143,6 @@
       }
 
       span {
-        font-family: Roboto;
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
