@@ -43,6 +43,7 @@
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "react-use": "^17.3.2",
+    "redux-persist": "^6.0.0",
     "store": "^2.0.12",
     "victory": "^36.4.0",
     "victory-core": "^36.4.0",

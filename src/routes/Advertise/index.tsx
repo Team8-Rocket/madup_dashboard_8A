@@ -1,36 +1,34 @@
-import { useMemo, useState, useRef, useEffect } from 'react'
+import { useMemo, useState, useRef, useEffect, MouseEvent } from 'react'
 import cx from 'classnames'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './advertise.module.scss'
-import adListDataSet from '../../data/adListDataSet.json'
-import { ArrowDown } from '../../assets/svgs'
+import { ArrowDown } from 'assets/svgs'
+import { IAds } from 'types/ads'
 
-import AdItem from './AdItem'
+import adListDataSet from 'data/adListDataSet.json'
+import AdItem from './AdItem/AdItem'
+import { changeSelectedOption } from 'store/adSlice'
 
 const Advertise = () => {
   const [showOptions, setShowOptions] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('all')
-  const optionRef = useRef<HTMLDivElement>(null)
+  const { selectedOption } = useSelector((state: IAds) => state.adOption)
+  const dispatch = useDispatch()
+
+  const optionRef = useRef<HTMLUListElement>(null)
 
   const handleChangeOption = () => setShowOptions((prevOption) => !prevOption)
 
-  const handleChangeSelecteOption = (e: any) => {
-    setSelectedOption(e.target.value)
+  const handleChangeSelecteOption = (e: MouseEvent<HTMLButtonElement>) => {
+    dispatch(changeSelectedOption(e.currentTarget.value))
     handleChangeOption()
   }
 
-  const changeTextOption = (option: string) => {
-    switch (option) {
-      case 'all':
-        return '전체 광고'
-      case 'active':
-        return '진행중'
-      case 'ended':
-        return '중단됨'
-      default:
-        return null
-    }
-  }
+  const textOption = {
+    all: '전체 광고',
+    active: '진행중',
+    ended: '중단됨',
+  }[selectedOption]
 
   const handleMapAdItems = useMemo(() => {
     if (selectedOption === 'all') return adListDataSet.ads.map((adItem) => <AdItem key={adItem.id} adItem={adItem} />)
@@ -55,30 +53,34 @@ const Advertise = () => {
       <h1>광고관리</h1>
       <div className={styles.container}>
         <div className={styles.buttonList}>
-          <button type='button' onClick={handleChangeOption} className={styles.adListButton}>
-            {changeTextOption(selectedOption)}
-            <ArrowDown className={cx({ [styles.open]: showOptions })} />
+          <button
+            type='button'
+            onClick={handleChangeOption}
+            className={cx(styles.adListButton, { [styles.open]: showOptions })}
+          >
+            {textOption}
+            <ArrowDown />
           </button>
           <button type='button' className={styles.adAddButton}>
             광고 만들기
           </button>
-          <div
-            ref={optionRef}
-            tabIndex={0}
-            role='button'
-            onClick={handleChangeSelecteOption}
-            className={cx(styles.options, { [styles.open]: showOptions })}
-          >
-            <button type='button' value='all'>
-              전체 광고
-            </button>
-            <button type='button' value='active'>
-              진행중
-            </button>
-            <button type='button' value='ended'>
-              중단됨
-            </button>
-          </div>
+          <ul ref={optionRef} className={cx(styles.options, { [styles.open]: showOptions })}>
+            <li>
+              <button type='button' value='all' onClick={handleChangeSelecteOption}>
+                전체 광고
+              </button>
+            </li>
+            <li>
+              <button type='button' value='active' onClick={handleChangeSelecteOption}>
+                진행중
+              </button>
+            </li>
+            <li>
+              <button type='button' value='ended' onClick={handleChangeSelecteOption}>
+                중단됨
+              </button>
+            </li>
+          </ul>
         </div>
         <div className={styles.adList}>{handleMapAdItems}</div>
       </div>
