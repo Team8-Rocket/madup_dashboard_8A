@@ -21,8 +21,6 @@ const PeriodPerformance = () => {
   const unitFormat = ['%', '원', '회', '회', '회', '원']
 
   const { calculatedCurrent, periodItem } = useSelectedDayItems(fitData, pastData)
-  console.log(calculatedCurrent, periodItem)
-  // const { calculatedCurrent, periodItem } = useSelectedItems()
 
   const currentValues = getValues(calculatedCurrent)
   const differenceValues = getValues(periodItem)

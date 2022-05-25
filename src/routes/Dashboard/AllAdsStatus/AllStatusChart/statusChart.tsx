@@ -46,12 +46,6 @@ const colors = ['#85DA47', '#4FADF7']
 // }
 
 const StatusChart = () => {
-  // const tagIcon = {
-  //   AAA: <AIcon />,
-  //   BBB: <BIcon />,
-  //   CCC: <CIcon />,
-  // }[tag]
-
   const Line = useMemo(() => {
     return data.map((item, idx) => (
       <VictoryLine

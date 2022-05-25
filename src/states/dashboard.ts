@@ -38,7 +38,7 @@ const dashboardSlice = createSlice({
     setEndDate: (state: DashboardState, action: PayloadAction<Date>) => {
       state.endDate = action.payload
     },
-    setFitData: (state: DashboardState, action: PayloadAction<IItem[]>) => {
+    setFitNowData: (state: DashboardState, action: PayloadAction<IItem[]>) => {
       state.fitNowData = action.payload
     },
     setData: (state: DashboardState, action: PayloadAction<IItem[]>) => {
@@ -50,7 +50,7 @@ const dashboardSlice = createSlice({
   },
 })
 
-export const { setStartDate, setEndDate, setFitData, setPastData } = dashboardSlice.actions
+export const { setStartDate, setEndDate, setFitNowData, setPastData } = dashboardSlice.actions
 export const getStartDate = (state: RootState): Date => state.dashboard.startDate
 export const getEndDate = (state: RootState): Date => state.dashboard.endDate
 export const getFitNowData = (state: RootState): IItem[] => state.dashboard.fitNowData

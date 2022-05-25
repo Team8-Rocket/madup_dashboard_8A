@@ -16,7 +16,7 @@ import {
   getStartDate,
   setEndDate,
   setStartDate,
-  setFitData,
+  setFitNowData,
   setPastData,
   getFitNowData,
   getPastData,
@@ -37,20 +37,19 @@ const Dashboard = () => {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    const { pastDate, toDay } = dateDifference(1, 'month')
+    const { pastDate, toDay } = dateDifference(7, 'day')
     dispatch(setStartDate(pastDate))
     dispatch(setEndDate(toDay))
     const fData = getFitData(pastDate, toDay)
-    dispatch(setFitData(fData))
+    dispatch(setFitNowData(fData))
   }, [])
 
   useEffect(() => {
     const fData = getFitData(startDate, endDate)
-    dispatch(setFitData(fData))
+    dispatch(setFitNowData(fData))
     const fitDiff = getFitDifference(startDate, endDate)
     const fitPastData = getFitData(fitDiff[0], fitDiff[1])
     dispatch(setPastData(fitPastData))
-    console.log(setPastData(fitPastData))
   }, [startDate, endDate])
 
   const onDateChange = (dates: [Date, Date]) => {
