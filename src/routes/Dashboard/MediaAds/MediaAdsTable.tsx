@@ -6,23 +6,31 @@ import styles from './mediaAds.module.scss'
 import MEDIA_DATA from './mediaChannelData.json'
 
 const startDate = new Date('2022-02-09')
-const endDate = new Date('2022-02-12')
+const endDate = new Date('2022-02-15')
 
 // const startDate = '2022-02-09'
 
 const MediaAdsTable = () => {
-  const [tableData, setTableData] = useState<TableData>({})
+  const [tableData, setTableData] = useState<TableData | undefined>(undefined)
+
   useEffect(() => {
     getData()
   }, [])
 
   const getData = () => {
     const totalData: TableData = {
-      facebook: { cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
-      naver: { cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
-      google: { cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
-      kakao: { cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+      facebook: { channel: '페이스북', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+      naver: { channel: '네이버', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+      google: { channel: '구글', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+      kakao: { channel: '카카오', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
     }
+
+    // const totalData: ITableData[] = [
+    //   { channel: 'facebook', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+    //   { channel: 'naver', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+    //   { channel: 'google', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+    //   { channel: 'kakao', cost: 0, sales: 0, roas: 0, imp: 0, click: 0, ctr: 0, cpc: 0 },
+    // ]
 
     const dateFilter = MEDIA_DATA.filter(
       (itemddd) =>
@@ -36,15 +44,21 @@ const MediaAdsTable = () => {
       totalData[item.channel]!.click += item.click
       // totalData[item.channel]!.ctr += item.ctr
       // totalData[item.channel]!.cpc += item.cpc
-      setTableData(totalData)
     })
+
+    Object.values(totalData).map((entrie, idx) => {
+      entrie.cpc = Math.floor(entrie.cost / entrie.click)
+      entrie.ctr = (entrie.click / entrie.imp) * 100
+    })
+
+    setTableData(totalData)
   }
 
-  const test = () => {
-    Object.values(tableData.naver).map((entrie, idx) => {
-      console.log(entrie, idx)
-    })
-  }
+  // const test = () => {
+  //   Object.values(tableData.naver).map((entrie, idx) => {
+  //     console.log(entrie, idx)
+  //   })
+  // }
 
   return (
     <div className={styles.tableWrap}>
@@ -62,17 +76,14 @@ const MediaAdsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {test()} */}
           <tr>
-            <th className={styles.mediaData}>페이스북</th>
-            <td className={styles.mediaData}>47</td>
-            <td className={styles.mediaData}>6</td>
-            <td className={styles.mediaData}>53</td>
-            <td className={styles.mediaData}>6</td>
-            <td className={styles.mediaData}>42</td>
-            <td className={styles.mediaData}>48</td>
-            <td className={styles.mediaData}>101</td>
+            {tableData && Object.values(tableData.facebook).map((entrie, i) => <td key={`facebook${i}`}>{entrie}</td>)}
           </tr>
+          <tr>{tableData && Object.values(tableData.naver).map((entrie, i) => <td key={`naver${i}`}>{entrie}</td>)}</tr>
+          <tr>
+            {tableData && Object.values(tableData.google).map((entrie, i) => <td key={`google${i}`}>{entrie}</td>)}
+          </tr>
+          <tr>{tableData && Object.values(tableData.kakao).map((entrie, i) => <td key={`kakao${i}`}>{entrie}</td>)}</tr>
         </tbody>
       </table>
     </div>
