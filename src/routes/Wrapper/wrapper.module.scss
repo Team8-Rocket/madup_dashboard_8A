@@ -12,3 +12,8 @@
     background-color: #f6f7f8;
   }
 }
+
+main {
+  width: calc(100% - 320px);
+  padding: 0 20px 20px;
+}

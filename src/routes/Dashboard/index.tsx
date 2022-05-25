@@ -38,7 +38,6 @@ const Dashboard = () => {
             endDate={endDate}
             dateFormat='yyyy년 MM월 dd일'
             selectsRange
-            locale='ko'
             monthsShown={2}
           />
         </div>
