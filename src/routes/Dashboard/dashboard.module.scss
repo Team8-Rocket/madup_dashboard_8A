@@ -1,9 +1,15 @@
 @use '/src/styles/base/reset';
 @use '/src/styles/constants/colors';
 
-.container {
+.appWrapper {
   width: 1120px;
   background-color: #f6f7f8;
+
+  .customDatePicker {
+    input {
+      width: 100%;
+    }
+  }
 
   .dashboardSection {
     width: 100%;

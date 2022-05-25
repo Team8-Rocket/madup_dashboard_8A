@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react'
 import { BigNumber } from 'bignumber.js'
 
 import data from 'data/trend-data-set.json'
-
 import styles from './periodPerformance.module.scss'
+
 import { cx } from 'styles'
 import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
 import { TriangleDown } from 'assets'

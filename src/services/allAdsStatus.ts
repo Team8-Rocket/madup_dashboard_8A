@@ -1,3 +1,4 @@
+import dayjs, { ManipulateType } from 'dayjs'
 import { IItem, IItemResult } from 'types/dashboard'
 
 // 기간별 n일 값 더하기
@@ -75,4 +76,12 @@ export const unitProcessedPeriodItems = (arr: number[]) => {
     if (remain === 0) return `${forOneSpotItem[0]}.${forOneSpotItem[1]}${unitWords[share]}`
     return Math.floor(absItem / 10000 ** share).toLocaleString() + unitWords[share]
   })
+}
+
+export const dateDifference = (num: number, str: ManipulateType | undefined = 'day') => {
+  const date = dayjs('2022-04-20')
+  const past = date.subtract(num, str)
+  const stringDate = date.format()
+  const stringPast = past.format()
+  return { pastDate: new Date(stringPast), toDay: new Date(stringDate) }
 }
