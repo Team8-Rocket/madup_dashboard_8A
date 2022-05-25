@@ -1,5 +1,8 @@
 import dayjs, { ManipulateType } from 'dayjs'
 import { IItem, IItemResult } from 'types/dashboard'
+import data from 'data/trend-data-set.json'
+import { useAppSelector } from 'hooks'
+import { getData } from 'states/dashboard'
 
 // 기간별 n일 값 더하기
 export const plusItems = (arr: IItem[]) => {
@@ -11,7 +14,7 @@ export const plusItems = (arr: IItem[]) => {
     conv: 0,
     sales: 0,
   }
-  arr.forEach((item: IItem) => {
+  arr?.forEach((item: IItem) => {
     result.roas += item.roas
     result.cost += item.cost
     result.imp += item.imp
@@ -45,9 +48,10 @@ export const minusItem = (current: IItemResult, past: IItemResult) => {
 }
 
 // 기간에 따른 차이 증감 결과
-export const usePeriodItems = (data: IItem[], days: number) => {
-  const currentArray = data.slice(-days)
-  const pastArray = data.slice(-days * 2, -days)
+export const usePeriodItems = (days: number) => {
+  const newData = useAppSelector(getData)
+  const currentArray = newData.slice(-days)
+  const pastArray = newData.slice(-days * 2, -days)
 
   const calculatedCurrent = plusItems(currentArray)
   const calculatedPast = plusItems(pastArray)
@@ -57,6 +61,20 @@ export const usePeriodItems = (data: IItem[], days: number) => {
 
   return result
 }
+
+// export const useSelectedDayItems = (fitData: IItem[]) => {
+//   const newData = useAppSelector(getData)
+//   const currentArray = newData.slice(-days)
+//   const pastArray = newData.slice(-days * 2, -days)
+
+//   const calculatedCurrent = plusItems(currentArray)
+//   const calculatedPast = plusItems(pastArray)
+
+//   const periodItem = minusItem(calculatedCurrent, calculatedPast)
+//   const result = { calculatedCurrent, periodItem }
+
+//   return result
+// }
 
 // 객체에서 value만 추출
 export const getValues = (obj: object) => {

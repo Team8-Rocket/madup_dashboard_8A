@@ -23,8 +23,8 @@ const MediaAdsChartCopy = ({ chartData }: Props) => {
         { value: 0, category: '광고비' },
         { value: 0, category: '매출' },
         { value: 0, category: '노출 수' },
-        { value: 0, category: '클릭 수' },
-        { value: 0, category: '전환 수' },
+        { value: 0, category: '클릭율' },
+        { value: 0, category: '전환율' },
       ],
     }
     return findCategory(data, arr)
@@ -40,8 +40,8 @@ const MediaAdsChartCopy = ({ chartData }: Props) => {
       data.data.find((item) => item.category === '광고비')!.value += d.cost
       data.data.find((item) => item.category === '매출')!.value += sales
       data.data.find((item) => item.category === '노출 수')!.value += d.imp
-      data.data.find((item) => item.category === '클릭 수')!.value += d.ctr
-      data.data.find((item) => item.category === '전환 수')!.value += d.cvr
+      data.data.find((item) => item.category === '클릭율')!.value += d.ctr
+      data.data.find((item) => item.category === '전환율')!.value += d.cvr
     })
     return data
   }
@@ -66,7 +66,6 @@ const MediaAdsChartCopy = ({ chartData }: Props) => {
       return item.channel === 'kakao'
     })
     const resultKakao = result(kakao)
-
     const total = result(chartData)
     // console.log(total)
 
