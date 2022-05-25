@@ -7,7 +7,7 @@ import { useLocation } from 'react-use'
 
 const Gnb = () => {
   const { pathname } = useLocation()
-  console.log(pathname)
+
   return (
     <aside className={styles.gnbWrapper}>
       <header>
