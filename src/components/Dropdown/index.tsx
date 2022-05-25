@@ -1,19 +1,32 @@
 import styles from './dropdown.module.scss'
 import { ArrowDown } from '../../assets/svgs'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { cx } from '../../styles'
 
 const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false)
   const [select, setSelect] = useState('매드업')
 
+  const clickOuter = useRef<HTMLDivElement>(null)
+
   const handleClickList = (e: React.MouseEvent<HTMLButtonElement>) => {
     setSelect(e.currentTarget.name)
     setDropdown(false)
   }
 
+  const handleClickOutSide = (e: any) => {
+    if (dropdown && !clickOuter.current?.contains(e.target)) setDropdown(false)
+  }
+
+  useEffect(() => {
+    if (dropdown) document.addEventListener('mousedown', handleClickOutSide)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutSide)
+    }
+  })
+
   return (
-    <div className={styles.dropdown}>
+    <div ref={clickOuter} className={styles.dropdown}>
       <div className={styles.select}>
         <span>{select}</span>
         <button type='button' onClick={() => setDropdown(!dropdown)}>

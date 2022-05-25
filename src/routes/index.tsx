@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-
 import Advertise from './Advertise'
 import Dashboard from './Dashboard'
 import Wrapper from './Wrapper'
