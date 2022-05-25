@@ -1,18 +1,8 @@
 import cx from 'classnames'
 import styles from './gnb.module.scss'
-<<<<<<< HEAD:src/components/Gnb/index.tsx
-import { NavLink } from 'react-router-dom'
-
-const Gnb = () => {
-  return (
-    <div>
-      <div className={styles.gnbWrapper}>
-        <h1>head</h1>
-        <nav>
-=======
 import { NavLink, Outlet } from 'react-router-dom'
-import { LeverBi, DashboardIcon, AdvertiseIcon, GuideIcon } from '../../../assets/svgs'
 import Dropdown from '../../Dropdown'
+import { AdvertiseIcon, DashboardIcon, GuideIcon, LeverBi } from '../../../assets/svgs'
 
 const Gnb = () => {
   return (
@@ -27,7 +17,6 @@ const Gnb = () => {
         </div>
         <div className={styles.linkList}>
           <h4>광고 센터</h4>
->>>>>>> develop:src/components/Wrapper/Gnb/index.tsx
           <ul>
             <li>
               <NavLink to='' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
