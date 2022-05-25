@@ -1,10 +1,13 @@
 import cx from 'classnames'
 import styles from './gnb.module.scss'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import Dropdown from '../../../components/Dropdown'
-import { AdvertiseIcon, DashboardIcon, GuideIcon, LeverBi } from '../../../assets/svgs'
+import { Advertise, AdvertiseSelect, Dashboard, DashboardSelect, GuideIcon, LeverBi } from '../../../assets/svgs'
+import { useLocation } from 'react-use'
 
 const Gnb = () => {
+  const { pathname } = useLocation()
+  console.log(pathname)
   return (
     <aside className={styles.gnbWrapper}>
       <header>
@@ -20,13 +23,13 @@ const Gnb = () => {
           <ul>
             <li>
               <NavLink to='' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-                <DashboardIcon />
+                {pathname === '/' ? <DashboardSelect /> : <Dashboard />}
                 <h5>대시보드</h5>
               </NavLink>
             </li>
             <li>
               <NavLink to='advertise' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-                <AdvertiseIcon />
+                {pathname === '/advertise' ? <AdvertiseSelect /> : <Advertise />}
                 <h5>광고관리</h5>
               </NavLink>
             </li>
