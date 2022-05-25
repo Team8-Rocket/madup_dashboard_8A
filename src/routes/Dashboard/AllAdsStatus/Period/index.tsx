@@ -6,7 +6,7 @@ import { useAppSelector } from 'hooks'
 import data from 'data/trend-data-set.json'
 import styles from './periodPerformance.module.scss'
 
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 
 import { cx } from 'styles'
 import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
