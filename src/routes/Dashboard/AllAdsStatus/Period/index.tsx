@@ -1,25 +1,26 @@
 import { useMemo, useState } from 'react'
 import { BigNumber } from 'bignumber.js'
 
+import { useAppSelector } from 'hooks'
+
 import data from 'data/trend-data-set.json'
 import styles from './periodPerformance.module.scss'
+
+import dayjs from 'dayjs'
 
 import { cx } from 'styles'
 import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
 import { TriangleDown } from 'assets/svgs'
-
-const newData = data.report.daily.map((item) => {
-  const bigNum: BigNumber = new BigNumber(item.roas).dividedBy(100).multipliedBy(item.cost)
-  const sales = Math.round(bigNum.toNumber() * 100) / 100
-  return { ...item, sales }
-})
+import { getFitData } from 'states/dashboard'
 
 const PeriodPerformance = () => {
+  const fitData = useAppSelector(getFitData)
+  const [differenceDay, setDifferenceDay] = useState(3)
   const titleFormat = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출']
   const unitFormat = ['%', '원', '회', '회', '회', '원']
 
-  const day = 3
-  const { calculatedCurrent, periodItem } = usePeriodItems(newData, day)
+  const { calculatedCurrent, periodItem } = usePeriodItems(differenceDay)
+  // const { calculatedCurrent, periodItem } = useSelectedItems()
 
   const currentValues = getValues(calculatedCurrent)
   const differenceValues = getValues(periodItem)
