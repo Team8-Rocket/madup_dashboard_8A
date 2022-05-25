@@ -26,7 +26,6 @@
       right: -5px;
       width: 5px;
       height: 5px;
-      background-color: tomato;
       border-radius: 50%;
     }
   }
@@ -38,12 +37,12 @@
 
     span {
       margin-left: 10px;
-      font-family: Roboto;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
       line-height: 16px;
-      color: #3a474e;
+      /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+      // color: #3a474e;
     }
   }
 }

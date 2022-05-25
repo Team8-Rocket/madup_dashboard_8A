@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react'
 import { BigNumber } from 'bignumber.js'
 
-import data from 'config/trend-data-set.json'
-import { IItem, IItemResult } from 'types/dashboard'
-
+import data from 'data/trend-data-set.json'
 import styles from './periodPerformance.module.scss'
+
 import { cx } from 'styles'
+import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
+import { TriangleDown } from 'assets/svgs'
 
 const newData = data.report.daily.map((item) => {
   const bigNum: BigNumber = new BigNumber(item.roas).dividedBy(100).multipliedBy(item.cost)
@@ -14,84 +15,36 @@ const newData = data.report.daily.map((item) => {
 })
 
 const PeriodPerformance = () => {
-  const thickFormat = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출']
+  const titleFormat = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출']
+  const unitFormat = ['%', '원', '회', '회', '회', '원']
 
-  const plusItems = (arr: IItem[]) => {
-    const result = {
-      roas: 0,
-      cost: 0,
-      imp: 0,
-      click: 0,
-      conv: 0,
-      sales: 0,
-    }
-    arr.forEach((item: IItem) => {
-      result.roas += item.roas
-      result.cost += item.cost
-      result.imp += item.imp
-      result.click += item.click
-      result.conv += item.conv
-      result.sales += item.sales
-    })
-
-    return result
-  }
-
-  const minusItem = (current: IItemResult, past: IItemResult) => {
-    const result: number[] = []
-    result.push(current.roas - past.roas)
-    // result.push(((current.sales + past.sales) / (current.cost + past.cost)) * 100)
-    result.push(current.cost - past.cost)
-    result.push(current.imp - past.imp)
-    result.push(current.click - past.click)
-    result.push(current.conv - past.conv)
-    result.push(current.sales - past.sales)
-
-    return result
-  }
-
-  const usePeriodItems = (days: number) => {
-    const currentArray = newData.slice(-days)
-    const pastArray = newData.slice(-days * 2, -days)
-
-    const calculatedCurrent = plusItems(currentArray)
-    const calculatedPast = plusItems(pastArray)
-
-    const periodItem = minusItem(calculatedCurrent, calculatedPast)
-    const result = { calculatedCurrent, periodItem }
-
-    return result
-  }
   const day = 3
-  const { calculatedCurrent, periodItem } = usePeriodItems(day)
+  const { calculatedCurrent, periodItem } = usePeriodItems(newData, day)
 
-  const getValues = (obj: object) => {
-    const result = []
-    for (const [key, value] of Object.entries(obj)) {
-      result.push(value)
-    }
-    return result
-  }
-  const currentItems = getValues(calculatedCurrent)
+  const currentValues = getValues(calculatedCurrent)
+  const differenceValues = getValues(periodItem)
 
-  const [isIncrease, setIsIncrease] = useState<Boolean>()
+  const currentItems = unitProcessedPeriodItems(currentValues)
+  const differenceItems = unitProcessedPeriodItems(differenceValues)
 
-  const periodItems = useMemo(() => {
+  const period = useMemo(() => {
     return (
-      <ul>
-        {periodItem.map((item: number, index: number) => {
-          if (item < 0.0) {
-            setIsIncrease(false)
-          }
+      <ul className={styles.container}>
+        {titleFormat.map((item: string, index: number) => {
+          const isPositive = differenceValues[index] > 0
           return (
-            <li key={thickFormat[index]} className={styles.container}>
-              <div className={styles.leftText}>
-                <span>{thickFormat[index]}</span>
-                <p>{currentItems[index]}%</p>
-              </div>
-              <div className={styles.rightText}>
-                <span>▼</span>
-                <span>{item}</span>
+            <li key={titleFormat[index]} className={styles.contents}>
+              <span>{titleFormat[index]}</span>
+              <div className={styles.periodText}>
+                <p>
+                  {currentItems[index]} {unitFormat[index]}
+                </p>
+                <div>
+                  <TriangleDown className={cx(styles.arrow, { [styles.arrowUp]: isPositive })} />
+                  <span>
+                    {differenceItems[index]} {unitFormat[index]}
+                  </span>
+                </div>
               </div>
             </li>
           )
@@ -100,7 +53,7 @@ const PeriodPerformance = () => {
     )
   }, [data])
 
-  return <section>{periodItems}</section>
+  return <section className={styles.periodSection}>{period}</section>
 }
 
 export default PeriodPerformance

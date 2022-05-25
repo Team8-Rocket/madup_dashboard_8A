@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import styles from './gnb.module.scss'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Dropdown from '../../../components/Dropdown'
 import { AdvertiseIcon, DashboardIcon, GuideIcon, LeverBi } from '../../../assets/svgs'
 
