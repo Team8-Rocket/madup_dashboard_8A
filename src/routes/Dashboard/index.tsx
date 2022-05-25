@@ -4,6 +4,7 @@ import dayjs, { ManipulateType } from 'dayjs'
 import { BigNumber } from 'bignumber.js'
 
 import { useAppSelector, useAppDispatch } from 'hooks'
+import { ArrowDown } from 'assets/svgs'
 
 import AllAdsStatus from './AllAdsStatus'
 import MediaAds from './MediaAds'
@@ -35,6 +36,7 @@ const Dashboard = () => {
   const minDate = new Date('2022-02-01')
   const maxDate = new Date('2022-04-20')
   const dispatch = useAppDispatch()
+  const [isClick, setIsClick] = useState(false)
 
   useEffect(() => {
     const { pastDate, toDay } = dateDifference(7, 'day')
@@ -75,8 +77,8 @@ const Dashboard = () => {
 
   return (
     <section className={styles.appWrapper}>
-      <header>
-        <h1>대시보드</h1>
+      <header className={styles.dataPickerWrap}>
+        <h1 className={styles.datePickerTitle}>대시보드</h1>
         <div className={styles.customDatePicker}>
           <DatePicker
             selected={startDate}
@@ -90,6 +92,7 @@ const Dashboard = () => {
             selectsRange
             monthsShown={2}
           />
+          <ArrowDown />
         </div>
       </header>
       <section className={styles.dashboardSection}>

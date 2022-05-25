@@ -4,36 +4,29 @@ import {
   VictoryChart,
   VictoryLegend,
   VictoryLine,
+  VictoryScatter,
   VictoryStack,
   VictoryTheme,
   VictoryTooltip,
   VictoryVoronoiContainer,
 } from 'victory'
 
-const data = [
-  [
-    { x: '2022-02-01', y: 1234 },
-    { x: '2022-02-02', y: 2 },
-    { x: '2022-02-03', y: 32 },
-    { x: '2022-02-04', y: 444 },
-  ],
-  [
-    { x: '2022-02-01', y: 4000 },
-    { x: '2022-02-02', y: 35000000 },
-    { x: '2022-02-03', y: 30000000 },
-    { x: '2022-02-04', y: 25000 },
-  ],
-]
+// const data = [
+//   [
+//     { x: '2022-02-01', y: 1234 },
+//     { x: '2022-02-02', y: 2 },
+//     { x: '2022-02-03', y: 32 },
+//     { x: '2022-02-04', y: 444 },
+//   ],
+//   [
+//     { x: '2022-02-01', y: 4000 },
+//     { x: '2022-02-02', y: 35000000 },
+//     { x: '2022-02-03', y: 30000000 },
+//     { x: '2022-02-04', y: 25000 },
+//   ],
+// ]
 
 // find maxima for normalizing data
-const maxima = data.map((dataset) => Math.max(...dataset.map((d) => d.y)))
-
-const xOffsets = [130, 1450]
-const tickPadding = [0, 0]
-const anchors = ['end', 'end']
-const bgColors = ['#94A2AD', '#EDEFF1']
-
-const colors = ['#85DA47', '#4FADF7']
 
 // const CustomTooltip = (x, y) => {
 //   const { x, y } = this.props
@@ -45,9 +38,20 @@ const colors = ['#85DA47', '#4FADF7']
 //   )
 // }
 
-const StatusChart = () => {
+interface Props {
+  data: [{ x: string; y: number }[], { x: string; y: number }[]]
+}
+const StatusChart = ({ data }: Props) => {
+  const maxima = data?.map((dataset) => Math.max(...dataset.map((d) => d.y)))
+
+  const xOffsets = [100, 970]
+  const tickPadding = [10, 10]
+  const anchors = ['end', 'end']
+  const bgColors = ['#94A2AD', '#EDEFF1']
+
+  const colors = ['#85DA47', '#4FADF7']
   const Line = useMemo(() => {
-    return data.map((item, idx) => (
+    return data?.map((item, idx) => (
       <VictoryLine
         key={`${item}+${idx}`}
         data={item}
@@ -69,9 +73,10 @@ const StatusChart = () => {
     <div>
       <VictoryChart
         width={1000}
+        // height={300}
         theme={VictoryTheme.material}
-        domainPadding={120}
-        padding={{ top: 0, bottom: 50, right: 0, left: 0 }}
+        domainPadding={30}
+        padding={{ top: 0, bottom: 50, right: 20, left: 20 }}
         containerComponent={
           <VictoryVoronoiContainer
             voronoiPadding={5}
@@ -90,16 +95,19 @@ const StatusChart = () => {
       >
         <VictoryAxis
           scale={{ x: 'time' }}
+          // padding={{ top: 0, bottom: 50, right: 20, left: 20 }}
           style={{
             axis: { stroke: '#94A2AD' },
           }}
         />
-        {data.map((d, i) => (
+        {data?.map((d, i) => (
           <VictoryAxis
+            // height={400}
             dependentAxis
             key={i}
             offsetX={xOffsets[i]}
             style={{
+              // grid: { stroke: 'gray' },
               axis: { stroke: 'transparent' },
               ticks: { stroke: 'transparent' },
             }}

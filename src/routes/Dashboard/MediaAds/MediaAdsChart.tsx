@@ -1,5 +1,5 @@
 import { BigNumber } from 'bignumber.js'
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from 'victory'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory'
 
 import { IMediaAds } from 'types/mediaAds'
 
@@ -38,7 +38,7 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
     return data
   }
 
-  const getFuck = () => {
+  const getFilterData = () => {
     const google = dateFilterData.filter((item: { channel: string }) => {
       return item.channel === 'google'
     })
@@ -66,7 +66,7 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
 
   const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
 
-  const { resultNaver, resultKakao, resultFacebook, resultGoogle, total } = getFuck()
+  const { resultNaver, resultKakao, resultFacebook, resultGoogle, total } = getFilterData()
 
   const percentCalculation = (arr: Record<string, { value: number; category: string }[]>) => {
     const percent: { value: number; category: string }[] = []
@@ -84,7 +84,18 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
           // tickFormat specifies how ticks should be displayed
           tickFormat={(x) => `${x * 100}%`}
         />
-        <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}>
+        <VictoryStack
+          labelComponent={
+            <VictoryTooltip
+              cornerRadius={5}
+              flyoutStyle={{
+                fill: '#3a474e',
+                strokeWidth: 0,
+              }}
+            />
+          }
+          colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}
+        >
           <VictoryBar data={percentCalculation(resultGoogle)} {...CHART_STYLE.bar} />
           <VictoryBar data={percentCalculation(resultNaver)} {...CHART_STYLE.bar} />
           <VictoryBar data={percentCalculation(resultFacebook)} {...CHART_STYLE.bar} />

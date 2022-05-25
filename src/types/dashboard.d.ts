@@ -19,7 +19,7 @@ export interface IItem {
 }
 
 export interface IItemResult {
-  // [key: string]: string
+  [key?: string]: any
   roas: number
   cost: number
   imp: number

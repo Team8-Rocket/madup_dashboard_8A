@@ -66,13 +66,10 @@ export const useWeekItems = (weekData: IItem[]) => {
   const weekDataRange = weekData.length
   const weekDataShare = Math.floor(weekDataRange / 7)
   const weekDataRemain = weekDataRange % 7
-  console.log(weekDataShare)
-  const currentArray = weekData.slice(-weekDataRemain)
-  console.log('cA', currentArray)
+  const currentArray = weekData.slice(weekDataRemain)
   const weekResult: IItemResult[] = []
-  for (let i = 0; i < weekDataShare; i += 6) {
-    const slicedArr = currentArray.slice(i, i * 6)
-    console.log(slicedArr)
+  for (let i = 0; i <= weekDataShare; i += 6) {
+    const slicedArr = currentArray.slice(i, i + 7)
     weekResult.push(plusItems(slicedArr))
   }
   return weekResult

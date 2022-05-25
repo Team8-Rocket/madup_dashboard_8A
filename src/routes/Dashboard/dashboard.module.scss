@@ -5,16 +5,26 @@
   width: 100%;
   background-color: colors.$GRAY25;
 
-  h1 {
-    font-size: 26px;
-    font-weight: 900;
-    line-height: 30px;
-    color: colors.$GRAY800;
-  }
+  .dataPickerWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px 40px;
 
-  .customDatePicker {
-    input {
-      width: 100%;
+    .datePickerTitle {
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 30px;
+      color: colors.$GRAY800;
+    }
+
+    .customDatePicker {
+      display: flex;
+      align-items: center;
+
+      input {
+        width: 260px;
+      }
     }
   }
 
