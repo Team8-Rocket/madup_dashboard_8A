@@ -11,7 +11,7 @@ const Dashboard = () => {
         <p>날짜 or x</p>
       </header>
       <section>
-        <AllAdsStatus />
+        {/* <AllAdsStatus /> */}
         <MediaAds />
       </section>
     </section>
