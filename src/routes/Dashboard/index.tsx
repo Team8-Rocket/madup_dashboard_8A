@@ -69,7 +69,7 @@ const Dashboard = () => {
   return (
     <section className={styles.appWrapper}>
       <header>
-        <h1>대시보드 or 광고관리</h1>
+        <h1>대시보드</h1>
         <div className={styles.customDatePicker}>
           <DatePicker
             selected={startDate}
