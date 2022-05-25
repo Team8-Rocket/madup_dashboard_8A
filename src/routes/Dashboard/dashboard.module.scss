@@ -3,7 +3,14 @@
 
 .appWrapper {
   width: 100%;
-  background-color: #f6f7f8;
+  background-color: colors.$GRAY25;
+
+  h1 {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 30px;
+    color: colors.$GRAY800;
+  }
 
   .customDatePicker {
     input {

@@ -9,17 +9,19 @@ import styles from './periodPerformance.module.scss'
 // import dayjs from 'dayjs'
 
 import { cx } from 'styles'
-import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
+import { usePeriodItems, getValues, unitProcessedPeriodItems, useSelectedDayItems } from 'services/allAdsStatus'
 import { TriangleDown } from 'assets/svgs'
-import { getFitData } from 'states/dashboard'
+import { getFitNowData, getPastData } from 'states/dashboard'
 
 const PeriodPerformance = () => {
-  const fitData = useAppSelector(getFitData)
+  const pastData = useAppSelector((state) => state.dashboard.fitPastData)
+  const fitData = useAppSelector((state) => state.dashboard.fitNowData)
   const [differenceDay, setDifferenceDay] = useState(3)
   const titleFormat = ['ROAS', '광고비', '노출수', '클릭수', '전환수', '매출']
   const unitFormat = ['%', '원', '회', '회', '회', '원']
 
-  const { calculatedCurrent, periodItem } = usePeriodItems(differenceDay)
+  const { calculatedCurrent, periodItem } = useSelectedDayItems(fitData, pastData)
+  console.log(calculatedCurrent, periodItem)
   // const { calculatedCurrent, periodItem } = useSelectedItems()
 
   const currentValues = getValues(calculatedCurrent)
@@ -52,7 +54,7 @@ const PeriodPerformance = () => {
         })}
       </ul>
     )
-  }, [data])
+  }, [pastData, fitData])
 
   return <section className={styles.periodSection}>{period}</section>
 }

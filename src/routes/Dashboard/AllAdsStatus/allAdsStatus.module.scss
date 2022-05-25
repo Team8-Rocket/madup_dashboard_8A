@@ -1,17 +1,14 @@
 @use '/src/styles/constants/colors';
 
 .container {
-  width: 1039px;
   height: 654px;
   padding: 40px;
-  background-color: #f6f7f8;
 
-  h1 {
+  h2 {
     font-size: 16px;
     font-weight: 700;
     line-height: 19px;
-    /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
-    color: #3a474e;
+    color: colors.$GRAY800;
   }
 
   .contents {

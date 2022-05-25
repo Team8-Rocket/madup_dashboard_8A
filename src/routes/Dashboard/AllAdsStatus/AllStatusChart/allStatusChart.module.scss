@@ -1,52 +1,13 @@
 @use '/src/styles/constants/colors';
 
+.chartWrapper {
+  padding: 10px;
+}
+
+.optionWrapper {
+  padding: 10px;
+}
+
 .chart {
-  margin: 30px;
+  padding: 10px;
 }
-
-/* 드롭다운 모듈화 예정 시작-------- */
-.dropdown {
-  position: relative;
-}
-
-.select {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 240px;
-  height: 60px;
-  padding: 20px;
-  margin-top: 13px;
-  border: 1px solid #d1d8dc;
-  border-radius: 10px;
-
-  button {
-    cursor: pointer;
-    background: inherit;
-    border: none;
-  }
-}
-
-.dropdownList {
-  display: none;
-  width: 240px;
-  margin-top: 5px;
-  background-color: colors.$WHITE;
-  border: 1px solid #d1d8dc;
-  border-radius: 10px;
-
-  &.active {
-    display: block;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-    padding: 20px;
-    border-bottom: 1px solid #d1d8dc;
-  }
-}
-
-/* 드롭다운 모듈화 예정 끝-------- */

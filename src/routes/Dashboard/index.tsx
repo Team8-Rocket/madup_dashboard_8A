@@ -7,24 +7,31 @@ import { useAppSelector, useAppDispatch } from 'hooks'
 
 import AllAdsStatus from './AllAdsStatus'
 import MediaAds from './MediaAds'
-import { dateDifference } from 'services/allAdsStatus'
+import { dateDifference, useSelectedDayItems } from 'services/allAdsStatus'
 
 import 'react-datepicker/dist/react-datepicker.css'
 import styles from './dashboard.module.scss'
-import { getEndDate, getStartDate, setEndDate, setStartDate, setFitData, setPastData } from 'states/dashboard'
+import {
+  getEndDate,
+  getStartDate,
+  setEndDate,
+  setStartDate,
+  setFitData,
+  setPastData,
+  getFitNowData,
+  getPastData,
+  getData,
+} from 'states/dashboard'
 
 import data from 'data/trend-data-set.json'
 import { IItem } from 'types/dashboard'
 
-const newData = data.report.daily.map((item) => {
-  const bigNum: BigNumber = new BigNumber(item.roas).dividedBy(100).multipliedBy(item.cost)
-  const sales = Math.round(bigNum.toNumber() * 100) / 100
-  return { ...item, sales }
-})
-
 const Dashboard = () => {
-  const startDate = useAppSelector(getStartDate)
-  const endDate = useAppSelector(getEndDate)
+  const startDate = useAppSelector((state) => state.dashboard.startDate)
+  const endDate = useAppSelector((state) => state.dashboard.endDate)
+  const newData = useAppSelector((state) => state.dashboard.data)
+  const pastData = useAppSelector(getPastData)
+  const fitData = useAppSelector(getFitNowData)
   const minDate = new Date('2022-02-01')
   const maxDate = new Date('2022-04-20')
   const dispatch = useAppDispatch()
@@ -37,7 +44,16 @@ const Dashboard = () => {
     dispatch(setFitData(fData))
   }, [])
 
-  const onDateChange = (dates: [Date | null, Date | null]) => {
+  useEffect(() => {
+    const fData = getFitData(startDate, endDate)
+    dispatch(setFitData(fData))
+    const fitDiff = getFitDifference(startDate, endDate)
+    const fitPastData = getFitData(fitDiff[0], fitDiff[1])
+    dispatch(setPastData(fitPastData))
+    console.log(setPastData(fitPastData))
+  }, [startDate, endDate])
+
+  const onDateChange = (dates: [Date, Date]) => {
     const [start, end] = dates
     dispatch(setStartDate(start))
     dispatch(setEndDate(end))
@@ -57,14 +73,6 @@ const Dashboard = () => {
     const last = past.add(diff, 'day')
     return [new Date(past.format()), new Date(last.format())]
   }
-
-  useEffect(() => {
-    const fData = getFitData(new Date('2022-02-03'), new Date('2022-02-05'))
-    dispatch(setFitData(fData))
-    const fitDiff = getFitDifference(new Date('2022-02-03'), new Date('2022-02-05'))
-    const fitPastData = getFitData(fitDiff[0], fitDiff[1])
-    dispatch(setPastData(fitPastData))
-  }, [startDate, endDate])
 
   return (
     <section className={styles.appWrapper}>

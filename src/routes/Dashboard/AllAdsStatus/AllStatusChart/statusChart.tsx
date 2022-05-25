@@ -46,6 +46,12 @@ const colors = ['#85DA47', '#4FADF7']
 // }
 
 const StatusChart = () => {
+  // const tagIcon = {
+  //   AAA: <AIcon />,
+  //   BBB: <BIcon />,
+  //   CCC: <CIcon />,
+  // }[tag]
+
   const Line = useMemo(() => {
     return data.map((item, idx) => (
       <VictoryLine
@@ -68,7 +74,7 @@ const StatusChart = () => {
   return (
     <div>
       <VictoryChart
-        width={1500}
+        width={1000}
         theme={VictoryTheme.material}
         domainPadding={120}
         padding={{ top: 0, bottom: 50, right: 0, left: 0 }}
