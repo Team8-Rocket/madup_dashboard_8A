@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import Gnb from 'components/Gnb'
-import UserOption from 'components/UserOption'
+import Gnb from './Gnb'
+import UserOption from './UserOption'
 import styles from './wrapper.module.scss'
 
 const Wrapper = () => {

@@ -6,7 +6,7 @@ import styles from './periodPerformance.module.scss'
 
 import { cx } from 'styles'
 import { usePeriodItems, getValues, unitProcessedPeriodItems } from 'services/allAdsStatus'
-import { TriangleDown } from 'assets'
+import { TriangleDown } from 'assets/svgs'
 
 const newData = data.report.daily.map((item) => {
   const bigNum: BigNumber = new BigNumber(item.roas).dividedBy(100).multipliedBy(item.cost)
