@@ -1,53 +1,52 @@
-<<<<<<< HEAD:src/routes/Dashboard/AllAdsStatus/AllStatusChart/allStatusChart.module.scss
-@use '/src/styles/constants/colors';
-=======
 @use '/src/styles/constants/colors';
 
-.userOptionWrapper {
-  position: relative;
-  width: 100%;
-  height: 80px;
-  border-bottom: 1px solid #edeff1;
+.chart {
+  margin: 30px;
 }
 
-.userOption {
-  position: absolute;
-  top: 20px;
-  right: 40px;
+/* 드롭다운 모듈화 예정 시작-------- */
+.dropdown {
+  position: relative;
+}
+
+.select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 210px;
-  height: 40px;
+  width: 240px;
+  height: 60px;
+  padding: 20px;
+  margin-top: 13px;
+  border: 1px solid #d1d8dc;
+  border-radius: 10px;
 
-  .alert {
-    position: relative;
-
-    .circle {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      width: 5px;
-      height: 5px;
-      background-color: tomato;
-      border-radius: 50%;
-    }
-  }
-
-  .userProfile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    span {
-      margin-left: 10px;
-      font-family: Roboto;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 16px;
-      color: #3a474e;
-    }
+  button {
+    cursor: pointer;
+    background: inherit;
+    border: none;
   }
 }
->>>>>>> develop:src/components/Wrapper/UserOption/userOption.module.scss
+
+.dropdownList {
+  display: none;
+  width: 240px;
+  margin-top: 5px;
+  background-color: colors.$WHITE;
+  border: 1px solid #d1d8dc;
+  border-radius: 10px;
+
+  &.active {
+    display: block;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 20px;
+    border-bottom: 1px solid #d1d8dc;
+  }
+}
+
+/* 드롭다운 모듈화 예정 끝-------- */

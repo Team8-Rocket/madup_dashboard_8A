@@ -27,12 +27,12 @@ const Dropdown = () => {
 
   return (
     <div ref={clickOuter} className={styles.dropdown}>
-      <div className={styles.select}>
-        <span>{select}</span>
-        <button type='button' onClick={() => setDropdown(!dropdown)}>
+      <button type='button' onClick={() => setDropdown(!dropdown)}>
+        <div className={styles.select}>
+          <span>{select}</span>
           <ArrowDown />
-        </button>
-      </div>
+        </div>
+      </button>
       <ul className={cx(styles.dropdownList, dropdown && styles.active)}>
         <li>
           <button type='button' name='매드업' onClick={handleClickList}>
