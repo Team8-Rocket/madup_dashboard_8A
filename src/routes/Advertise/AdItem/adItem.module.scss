@@ -1,0 +1,67 @@
+@use 'styles/constants/colors';
+
+.adItem {
+  width: 305px;
+  height: 420px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  border: 1px solid colors.$GRAY100;
+  border-radius: 10px;
+
+  &:hover {
+    border: 1px solid #586cf5;
+  }
+
+  .title dt {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    font-size: 16px;
+    font-weight: 700;
+    color: colors.$GRAY800;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: flex-start;
+    padding: 13px 0;
+    font-size: 12px;
+    border-top: 1px solid colors.$GRAY50;
+
+    dt {
+      display: flex;
+      justify-content: flex-start;
+      width: 100px;
+      font-weight: 500;
+      color: colors.$GRAY300;
+    }
+
+    dd {
+      font-weight: 700;
+    }
+  }
+
+  // div:last-child {
+  //   border-bottom: 1px solid colors.$GRAY50;
+  // }
+
+  button {
+    width: 92px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border: 1px solid colors.$GRAY100;
+    border-radius: 10px;
+  }
+
+  & + & {
+    margin-left: 20px;
+  }
+
+  &:nth-child(4n + 0) {
+    margin-left: 0;
+  }
+}

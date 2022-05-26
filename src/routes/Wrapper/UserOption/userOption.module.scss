@@ -1,0 +1,49 @@
+@use '/src/styles/constants/colors';
+
+.userOptionWrapper {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #edeff1;
+}
+
+.userOption {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 210px;
+  height: 40px;
+
+  .alert {
+    position: relative;
+
+    .circle {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 5px;
+      height: 5px;
+      background-color: #ea3a4b;
+      border-radius: 50%;
+    }
+  }
+
+  .userProfile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      margin-left: 10px;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px;
+      /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
+      // color: #3a474e;
+    }
+  }
+}

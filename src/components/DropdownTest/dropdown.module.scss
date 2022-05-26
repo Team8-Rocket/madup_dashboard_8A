@@ -1,0 +1,68 @@
+@use '/src/styles/constants/colors';
+
+.dropdown {
+  position: relative;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 123px;
+  height: 40px;
+  padding: 20px;
+  margin: 13px 10px 0 0;
+  border: 1px solid #d1d8dc;
+  border-radius: 10px;
+
+  span {
+    position: relative;
+    left: 18px;
+
+    &.colorChange::before {
+      background-color: colors.$FACEBOOK;
+    }
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: -18px;
+      width: 10px;
+      height: 10px;
+      content: '';
+      background-color: colors.$NAVER;
+      border-radius: 50%;
+    }
+  }
+
+  button {
+    cursor: pointer;
+    background: inherit;
+    border: none;
+  }
+}
+
+.dropdownList {
+  position: absolute;
+  top: 55px;
+  z-index: 1;
+  display: none;
+  width: 123px;
+  margin-top: 5px;
+  background-color: colors.$WHITE;
+  border: 1px solid #d1d8dc;
+  border-radius: 10px;
+
+  &.active {
+    display: block;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    padding-left: 20px;
+    border-bottom: 1px solid #d1d8dc;
+  }
+}

@@ -1,10 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
-
-import Gnb from '../components/Wrapper/Gnb'
 import Advertise from './Advertise'
 import Dashboard from './Dashboard'
-import styles from './routes.module.scss'
-import Wrapper from '../components/Wrapper'
+import Wrapper from './Wrapper'
 
 const App = () => {
   return (

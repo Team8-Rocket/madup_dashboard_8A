@@ -1,0 +1,58 @@
+@use '/src/styles/constants/colors';
+
+.periodSection {
+  width: 100%;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 30px;
+
+    .contents {
+      box-sizing: borderborder-box;
+      flex: 1 1 25%;
+      width: 304px;
+      height: 80px;
+      padding: 18px 40px;
+      margin: 10px;
+      border: 1px solid colors.$GRAY50;
+      border-radius: 15px;
+
+      span {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 14px;
+        color: colors.$GRAY300;
+      }
+
+      .periodText {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 10px;
+
+        p {
+          height: 19px;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 19px;
+          color: colors.$GRAY800;
+        }
+
+        span {
+          margin-left: 5px;
+        }
+      }
+
+      .arrow {
+        margin-right: 5px;
+        fill: #85da47;
+
+        &.arrowUp {
+          fill: #ea3a4b;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}

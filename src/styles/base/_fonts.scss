@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-@import url('//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+@use '../constants/colors.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap');
 
 body,
 button,
 input,
 textarea {
-  font-family: 'Spoqa Han Sans Neo', Inter, Arial, PingFangSC-Regular, 'Microsoft YaHei', sans-serif;
-  font-feature-settings: 'tnum';
+  font-family: Roboto, sans-serif;
+  color: colors.$GRAY800;
 }
 
 input[type='number'] {

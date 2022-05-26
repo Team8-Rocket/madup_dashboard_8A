@@ -1,46 +1,95 @@
-# Getting Started with Create React App
+# 광고관리 통계 Chart 대시보드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📜 프로젝트 개요
+json 데이터로 광고관리와 현황을 차트로 볼 수 있는 대시보드 제작.
 
-## Available Scripts
 
-In the project directory, you can run:
+## 🔗 프로젝트 배포
 
-### `yarn start`
+### 🔗 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ⚙ 기술 스택
+  <img src="https://img.shields.io/badge/TypeScript-v4.4.2-blue"/>  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  <img src="https://img.shields.io/badge/React-v18.1.0-blue"/>  
 
-### `yarn test`
+  <img src="https://img.shields.io/badge/Redux-v8.0.1-blue"/>  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  <img src="https://img.shields.io/badge/React Router Dom-v6.0-blue"/>  
 
-### `yarn build`
+  <img src="https://img.shields.io/badge/Victory.js-v36.4.0-blue"/>  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/>  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  <img src="https://img.shields.io/badge/dayjs-v1.11.2-blue"/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/>    
 
-### `yarn eject`
+```
+그 외 추가 라이브러리
+  dayjs / react-datepicker / victory
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🎄 프로젝트 트리
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+📦src
+ ┣ 📂assets         // svg
+ ┣ 📂components     // 드롭다운, 스켈레톤, 공유컴포넌트
+ ┣ 📂data	        // json 데이터
+ ┣ 📂hooks	        // redux toolkit hooks
+ ┣ 📂routes         // 페이지
+ ┃ ┣ 📂Advertise	// 광고관리
+ ┃ ┣ 📂Dashboard	// 대시보드
+ ┃ ┣ 📂Wrapper		// GNB
+ ┣ 📂services
+ ┣ 📂states     
+ ┣ 📂styles
+ ┣ 📂types
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+## 📍 Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. yarn 설치
+```sh
+$ npm i yarn
+```
 
-## Learn More
+2. Repository 클론
+```sh
+$ git clone https://github.com/Team8-Rocket/madup_dashboard_8A.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Dependecies 설치
+```sh
+$ yarn install
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Run 실행
+```sh
+$ yarn start
+```
+
+
+## 🖼 실행 이미지
+
+
+1. skeleton 로딩화면 구현.
+2. 전역 상태관리로 다른 화면에 이동시, 복귀 했을 때 마지막 상태가 유지.
+3. Datetime Picker로 날짜에 따라 데이터 적용.
+4. Victory.js로 차트 구현
+    - 꺾은선 그래프 통합 광고 현황 구현
+    - 막대 그래프 매체 현황 구현
+5. 전체, 진행중, 중단됨 상태에 따른 웹/앱 광고 카드 구현
+
+## 🔧구현 방법
+
+
+## 🔥 어려웠던 점
+- git conflict 해결
+
+
+## Built with
+| ![lisarnjs](https://avatars.githubusercontent.com/u/92686349?v=4) |![Lee Ju I](https://avatars.githubusercontent.com/u/103873136?v=4)|![zellytozelly](https://avatars.githubusercontent.com/u/51311690?v=4)|![LUMPEN](https://avatars.githubusercontent.com/u/68418005?v=4)|![bisari31](https://avatars.githubusercontent.com/u/98396758?v=4)|
+|:---:|:---:|:---:|:---:|:---:|
+|[**권은서**](https://github.com/lisarnjs)|[**이주이**](https://github.com/jui9266)|[**김수진**](https://github.com/zellytozelly)|[**김승원**](https://github.com/lumpenop)|[**이상원**](https://github.com/bisari31)|
