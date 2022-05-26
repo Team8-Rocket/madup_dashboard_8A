@@ -9,10 +9,21 @@ json 데이터로 광고관리와 현황을 차트로 볼 수 있는 대시보�
 ### 🔗 
 
 ## ⚙ 기술 스택
-  <img src="https://img.shields.io/badge/TypeScript-v4.4.2-blue"/>
-  <img src="https://img.shields.io/badge/React-v18.1.0-blue"/>
-  <img src="https://img.shields.io/badge/Redux/toolkit-v1.8.1-blue"/>
-  <img src="https://img.shields.io/badge/React Router Dom-v6.3.0-blue"/>
+  <img src="https://img.shields.io/badge/TypeScript-v4.4.2-blue"/>  
+
+  <img src="https://img.shields.io/badge/React-v18.1.0-blue"/>  
+
+  <img src="https://img.shields.io/badge/Redux-v8.0.1-blue"/>  
+
+  <img src="https://img.shields.io/badge/React Router Dom-v6.0-blue"/>  
+
+  <img src="https://img.shields.io/badge/Victory.js-v36.4.0-blue"/>  
+
+  <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/>  
+
+  <img src="https://img.shields.io/badge/dayjs-v1.11.2-blue"/>
+
+  <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/>    
 
 ```
 그 외 추가 라이브러리
@@ -75,3 +86,10 @@ $ yarn start
 
 
 ## 🔥 어려웠던 점
+- git conflict 해결
+
+
+## Built with
+| ![lisarnjs](https://avatars.githubusercontent.com/u/92686349?v=4) |![Lee Ju I](https://avatars.githubusercontent.com/u/103873136?v=4)|![zellytozelly](https://avatars.githubusercontent.com/u/51311690?v=4)|![LUMPEN](https://avatars.githubusercontent.com/u/68418005?v=4)|![bisari31](https://avatars.githubusercontent.com/u/98396758?v=4)|
+|:---:|:---:|:---:|:---:|:---:|
+|[**권은서**](https://github.com/lisarnjs)|[**이주이**](https://github.com/jui9266)|[**김수진**](https://github.com/zellytozelly)|[**김승원**](https://github.com/lumpenop)|[**이상원**](https://github.com/bisari31)|
