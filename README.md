@@ -11,7 +11,7 @@ json 데이터로 광고관리와 현황을 차트로 볼 수 있는 대시보�
 ## ⚙ 기술 스택
   <img src="https://img.shields.io/badge/TypeScript-v4.4.2-blue"/> <img src="https://img.shields.io/badge/React-v18.1.0-blue"/> <img src="https://img.shields.io/badge/Redux-v8.0.1-blue"/> <img src="https://img.shields.io/badge/React Router Dom-v6.0-blue"/> 
   
-  <img src="https://img.shields.io/badge/Victory.js-v36.4.0-blue"/> <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/> <img src="https://img.shields.io/badge/dayjs-v1.11.2-blue"/> <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/>    
+  <img src="https://img.shields.io/badge/Victory.js-v36.4.0-blue"/> <img src="https://img.shields.io/badge/SCSS-v1.51.0-blue"/> <img src="https://img.shields.io/badge/dayjs-v1.11.2-blue"/>    
 
 ```
 그 외 추가 라이브러리
