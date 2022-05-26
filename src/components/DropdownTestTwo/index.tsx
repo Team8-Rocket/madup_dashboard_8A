@@ -1,15 +1,23 @@
-import styles from './dropdown.module.scss'
-import { ArrowDown } from 'assets/svgs'
 import React, { useEffect, useRef, useState } from 'react'
 import { cx } from 'styles'
+import { useAppDispatch } from 'hooks'
+
+import { setWeekSelect } from 'states/dashboard'
+
+import styles from './dropdown.module.scss'
+import { ArrowDown } from 'assets/svgs'
 
 const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false)
-  const [select, setSelect] = useState('매드업')
+  const [select, setSelect] = useState('일간')
+  const dispatch = useAppDispatch()
 
   const clickOuter = useRef<HTMLDivElement>(null)
 
   const handleClickList = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let result
+    select === '주간' ? (result = true) : (result = false)
+    dispatch(setWeekSelect(result))
     setSelect(e.currentTarget.name)
     setDropdown(false)
   }
@@ -35,13 +43,13 @@ const Dropdown = () => {
       </button>
       <ul className={cx(styles.dropdownList, dropdown && styles.active)}>
         <li>
-          <button type='button' name='매드업' onClick={handleClickList}>
-            매드업
+          <button type='button' name='주간' onClick={handleClickList}>
+            주간
           </button>
         </li>
         <li>
-          <button type='button' name='서비스 추가하기' onClick={handleClickList}>
-            서비스 추가하기
+          <button type='button' name='일간' onClick={handleClickList}>
+            일간
           </button>
         </li>
       </ul>

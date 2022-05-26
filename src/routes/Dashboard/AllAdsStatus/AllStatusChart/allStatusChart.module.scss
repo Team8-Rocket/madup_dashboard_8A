@@ -8,6 +8,23 @@
   padding: 10px;
 }
 
+.dropdownWrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+
+  .leftDropdown {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .rightDropdown {
+    justify-content: flex-end;
+  }
+}
+
 .chart {
   padding: 10px;
 }

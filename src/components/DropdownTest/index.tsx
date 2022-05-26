@@ -1,57 +1,70 @@
-// import { MouseEvent, useRef, useState } from 'react'
-// import { useDispatch, useSelector } from 'react-redux'
-// import cx from 'classnames'
+import styles from './dropdown.module.scss'
+import { ArrowDown } from 'assets/svgs'
+import React, { useEffect, useRef, useState, MouseEvent } from 'react'
+import { cx } from 'styles'
 
-// import { ArrowDown } from 'assets/svgs'
+interface Props {
+  dataArr: string[] | undefined
+  selected: string
+  setSelected: Function
+  isSecond: boolean
+}
 
-// import styles from './dropdownTest.module.scss'
-// import { changeSelectedOption } from 'store/adSlice'
-// import { IAds } from 'types/ads'
+interface MemuTitle {
+  [key: string]: string
+}
+const DROPDOWN_TITLE: MemuTitle = {
+  roas: 'ROAS',
+  cost: '광고비',
+  imp: '노출수',
+  click: '클릭수',
+  conv: '전환수',
+  sales: '매출',
+  day: '일간',
+  week: '주간',
+}
 
-// const DropDownTest = () => {
-//   const [showOption, setShowOption] = useState(false)
-//   const optionRef = useRef<HTMLUListElement>(null)
-//   const { selectedOption } = useSelector((state: IAds) => state.adOption)
-//   const dispatch = useDispatch()
+const Dropdown = ({ dataArr, selected, setSelected, isSecond }: Props) => {
+  const [dropdown, setDropdown] = useState(false)
 
-//   const handleChangeOption = () => setShowOption((prevOption) => !prevOption)
+  const clickOuter = useRef<HTMLDivElement>(null)
 
-//   const handleChangeSelecteOption = (e: MouseEvent<HTMLButtonElement>) => {
-//     dispatch(changeSelectedOption(e.currentTarget.value))
-//     handleChangeOption()
-//   }
+  const handleClickOutSide = (e: any) => {
+    if (dropdown && !clickOuter.current?.contains(e.target)) setDropdown(false)
+  }
 
-//   const textOption = [
-//     {
-//       all: '전체 광고',
-//     },
-//     { active: '진행중' },
-//     { ended: '중단됨' },
-//   ][selectedOption]
+  useEffect(() => {
+    if (dropdown) document.addEventListener('mousedown', handleClickOutSide)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutSide)
+    }
+  })
 
-//   return (
-//     <div>
-//       <button
-//         type='button'
-//         onClick={handleChangeOption}
-//         className={cx(styles.adListButton, { [styles.open]: showOption })}
-//       >
-//         {textOption[0]}
-//         <ArrowDown />
-//       </button>
-//       <ul ref={optionRef} className={cx(styles.options, { [styles.open]: showOption })}>
-//         {textOption.map((list: object, index: number) => (
-//           <li key={list[index]}>
-//             <button type='button' value={list.value} onClick={handleChangeSelecteOption}>
-//               {list[index]}
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   )
-// }
+  const optionButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
+    setSelected(event.currentTarget.value)
+    setDropdown(false)
+  }
 
-// export default DropDownTest
-
-export default {}
+  return (
+    <div ref={clickOuter} className={styles.dropdown}>
+      <button type='button' onClick={() => setDropdown(!dropdown)}>
+        <div className={styles.select}>
+          <span className={cx({ [styles.colorChange]: isSecond })}>{DROPDOWN_TITLE[selected]}</span>
+          <ArrowDown />
+        </div>
+      </button>
+      <ul className={cx(styles.dropdownList, dropdown && styles.active)}>
+        {dataArr?.map((item) => {
+          return (
+            <li key={item}>
+              <button type='button' onClick={optionButtonClick} value={item}>
+                {DROPDOWN_TITLE[item]}
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+export default Dropdown

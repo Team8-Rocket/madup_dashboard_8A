@@ -27,16 +27,13 @@ const MediaAds = () => {
     )
     setDatefilterData(dateFilter)
   }, [startDate, endDate])
+
   return (
     <div className={styles.mediaAdsWrap}>
       <h2 className={styles.title}>매체현황</h2>
       <div className={styles.content}>
-        {dateFilterData !== undefined && dateFilterData?.length > 0 && (
-          <MediaAdsChart dateFilterData={dateFilterData} />
-        )}
-        {dateFilterData !== undefined && dateFilterData?.length > 0 && (
-          <MediaAdsTable dateFilterData={dateFilterData} />
-        )}
+        {dateFilterData && <MediaAdsChart dateFilterData={dateFilterData} />}
+        {dateFilterData && <MediaAdsTable dateFilterData={dateFilterData} />}
       </div>
     </div>
   )

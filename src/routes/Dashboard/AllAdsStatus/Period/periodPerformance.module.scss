@@ -16,15 +16,14 @@
       height: 80px;
       padding: 18px 40px;
       margin: 10px;
-      border: 1px solid #edeff1;
+      border: 1px solid colors.$GRAY50;
       border-radius: 15px;
 
       span {
         font-size: 12px;
         font-weight: 500;
         line-height: 14px;
-        /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
-        color: #94a2ad;
+        color: colors.$GRAY300;
       }
 
       .periodText {
@@ -37,8 +36,7 @@
           font-size: 16px;
           font-weight: 700;
           line-height: 19px;
-          /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
-          color: #3a474e;
+          color: colors.$GRAY800;
         }
 
         span {

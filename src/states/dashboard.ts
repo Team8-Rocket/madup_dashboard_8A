@@ -18,6 +18,9 @@ export interface DashboardState {
   fitNowData: IItem[]
   fitPastData: IItem[]
   data: IItem[]
+  firstSelect: string
+  secondSelect: string
+  weekSelect: Boolean
 }
 
 const INITIAL_STATE: DashboardState = {
@@ -26,6 +29,9 @@ const INITIAL_STATE: DashboardState = {
   fitNowData: newData,
   fitPastData: newData,
   data: newData,
+  firstSelect: 'roas',
+  secondSelect: 'cost',
+  weekSelect: true,
 }
 
 const dashboardSlice = createSlice({
@@ -47,14 +53,27 @@ const dashboardSlice = createSlice({
     setPastData: (state: DashboardState, action: PayloadAction<IItem[]>) => {
       state.fitPastData = action.payload
     },
+    setFirstSelect: (state: DashboardState, action: PayloadAction<string>) => {
+      state.firstSelect = action.payload
+    },
+    setSecondSelect: (state: DashboardState, action: PayloadAction<string>) => {
+      state.secondSelect = action.payload
+    },
+    setWeekSelect: (state: DashboardState, action: PayloadAction<Boolean>) => {
+      state.weekSelect = action.payload
+    },
   },
 })
 
-export const { setStartDate, setEndDate, setFitNowData, setPastData } = dashboardSlice.actions
+export const { setStartDate, setEndDate, setFitNowData, setPastData, setFirstSelect, setSecondSelect, setWeekSelect } =
+  dashboardSlice.actions
 export const getStartDate = (state: RootState): Date => state.dashboard.startDate
 export const getEndDate = (state: RootState): Date => state.dashboard.endDate
 export const getFitNowData = (state: RootState): IItem[] => state.dashboard.fitNowData
 export const getData = (state: RootState): IItem[] => state.dashboard.data
 export const getPastData = (state: RootState): IItem[] => state.dashboard.fitPastData
+export const getFirstSelect = (state: RootState): string => state.dashboard.firstSelect
+export const getSecondSelect = (state: RootState): string => state.dashboard.secondSelect
+export const getWeekSelect = (state: RootState): Boolean => state.dashboard.weekSelect
 
 export default dashboardSlice.reducer

@@ -1,6 +1,6 @@
+/* eslint-disable no-console */
 import dayjs, { ManipulateType } from 'dayjs'
-import { IItem, IItemResult } from 'types/dashboard'
-import data from 'data/trend-data-set.json'
+import { IItem } from 'types/dashboard'
 import { useAppSelector } from 'hooks'
 import { getData } from 'states/dashboard'
 
@@ -13,6 +13,12 @@ export const plusItems = (arr: IItem[]) => {
     click: 0,
     conv: 0,
     sales: 0,
+    date: '',
+    convValue: 0,
+    ctr: 0,
+    cvr: 0,
+    cpc: 0,
+    cpa: 0,
   }
   arr?.forEach((item: IItem) => {
     result.roas += item.roas
@@ -21,13 +27,14 @@ export const plusItems = (arr: IItem[]) => {
     result.click += item.click
     result.conv += item.conv
     result.sales += item.sales
+    result.date = item.date
   })
 
   return result
 }
 
 // 현재 n일 - 과거 n일
-export const minusItem = (current: IItemResult, past: IItemResult) => {
+export const minusItem = (current: IItem, past: IItem) => {
   const result = {
     roas: 0,
     cost: 0,
@@ -35,6 +42,12 @@ export const minusItem = (current: IItemResult, past: IItemResult) => {
     click: 0,
     conv: 0,
     sales: 0,
+    date: '',
+    convValue: 0,
+    ctr: 0,
+    cvr: 0,
+    cpc: 0,
+    cpa: 0,
   }
   result.roas = current.roas - past.roas
   // result.push(((current.sales + past.sales) / (current.cost + past.cost)) * 100)
@@ -62,15 +75,19 @@ export const usePeriodItems = (days: number) => {
   return result
 }
 
-export const useWeekItems = (weekData: IItem[]) => {
+export const getWeekItems = (weekData: IItem[]) => {
   const weekDataRange = weekData.length
-  const weekDataShare = Math.floor(weekDataRange / 7)
+  // const weekDataShare = Math.floor(weekDataRange / 7)
   const weekDataRemain = weekDataRange % 7
-  const currentArray = weekData.slice(weekDataRemain)
-  const weekResult: IItemResult[] = []
-  for (let i = 0; i <= weekDataShare; i += 6) {
-    const slicedArr = currentArray.slice(i, i + 7)
-    weekResult.push(plusItems(slicedArr))
+  const currentArray = weekData.slice(0, -weekDataRemain)
+  const weekResult: IItem[] = []
+  let n = 0
+  for (let i = 0; i <= weekDataRemain; i += 1) {
+    const slicedArr = currentArray.slice(n, i + 7)
+    n += i
+    const plus = plusItems(slicedArr)
+    const aPlus = { ...plus, date: currentArray[n].date }
+    weekResult.push(aPlus)
   }
   return weekResult
 }

@@ -1,5 +1,5 @@
 import { BigNumber } from 'bignumber.js'
-import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryTooltip } from 'victory'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryStack, VictoryTheme } from 'victory'
 
 import { IMediaAds } from 'types/mediaAds'
 
@@ -77,25 +77,18 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
   }
   return (
     <div className={styles.mediaAdChartWrap}>
-      <VictoryChart width={900} theme={VictoryTheme.material} domainPadding={20}>
+      <VictoryChart width={900} theme={VictoryTheme.material} domainPadding={40}>
         <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
         <VictoryAxis
+          style={{
+            axis: { stroke: 'transparent' },
+            ticks: { stroke: 'transparent' },
+            tickLabels: { fontSize: 12, padding: 5 },
+          }}
           dependentAxis
-          // tickFormat specifies how ticks should be displayed
           tickFormat={(x) => `${x * 100}%`}
         />
-        <VictoryStack
-          labelComponent={
-            <VictoryTooltip
-              cornerRadius={5}
-              flyoutStyle={{
-                fill: '#3a474e',
-                strokeWidth: 0,
-              }}
-            />
-          }
-          colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}
-        >
+        <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}>
           <VictoryBar data={percentCalculation(resultGoogle)} {...CHART_STYLE.bar} />
           <VictoryBar data={percentCalculation(resultNaver)} {...CHART_STYLE.bar} />
           <VictoryBar data={percentCalculation(resultFacebook)} {...CHART_STYLE.bar} />

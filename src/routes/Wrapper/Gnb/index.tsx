@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import styles from './gnb.module.scss'
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink, useParams, Link } from 'react-router-dom'
 import Dropdown from '../../../components/Dropdown'
 import { Advertise, AdvertiseSelect, Dashboard, DashboardSelect, GuideIcon, LeverBi } from '../../../assets/svgs'
 import { useLocation } from 'react-use'
@@ -10,9 +10,7 @@ const Gnb = () => {
 
   return (
     <div className={styles.gnbWrapper}>
-      <div>
-        <LeverBi />
-      </div>
+      <LeverBi />
       <nav>
         <div className={styles.service}>
           <h4>서비스</h4>
@@ -37,18 +35,22 @@ const Gnb = () => {
         </div>
       </nav>
       <div>
-        <div className={styles.guide}>
-          <div className={styles.guideIcon}>
-            <GuideIcon />
+        <div className={styles.navBottom}>
+          <div className={styles.guidWrap}>
+            <div className={styles.guideIcon}>
+              <GuideIcon />
+            </div>
+            <div className={styles.guideContent}>
+              <p className={styles.gutidBigText}>레버 이용 가이드</p>
+              <p>시작하기 전에 알아보기</p>
+            </div>
           </div>
-          <div className={styles.guideContent}>
-            <p>레버 이용 가이드</p>
-            <span>시작하기 전에 알아보기</span>
+          <div className={styles.agreement}>
+            <p>레버는 함께 만들어갑니다.</p>
+            <Link className={styles.link} to=''>
+              이용약관
+            </Link>
           </div>
-        </div>
-        <div className={styles.agreement}>
-          <p>레버는 함께 만들어갑니다.</p>
-          <span>이용약관</span>
         </div>
       </div>
     </div>
