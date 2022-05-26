@@ -1,7 +1,7 @@
 @use '/src/styles/constants/colors';
 
 .mediaAdsWrap {
-  padding: 40px;
+  margin-top: 40px;
 
   .title {
     padding-bottom: 20px;
@@ -61,7 +61,7 @@
 
     .tableWrap {
       margin-top: 80px;
-      overflow-x: auto;
+      overflow-x: scroll;
       font-size: 12px;
 
       tr {
@@ -69,7 +69,7 @@
       }
 
       .totalData {
-        color: colors.$Primary;
+        color: colors.$PRIMARY;
       }
 
       .table {

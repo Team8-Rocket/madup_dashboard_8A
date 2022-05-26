@@ -1,69 +1,105 @@
-import { useState, useEffect, MouseEvent } from 'react'
-import dayjs, { ManipulateType } from 'dayjs'
-import { dateDifference } from 'services/allAdsStatus'
+/* eslint-disable dot-notation */
+import { useState, useEffect, useMemo } from 'react'
+import { getWeekItems } from 'services/allAdsStatus'
 import StatusChart from './statusChart'
-import styles, { cx } from 'styles'
-import { ArrowDown } from 'assets/svgs'
 
-import data from 'data/trend-data-set.json'
-import AdItem from 'routes/Advertise/AdItem/AdItem'
+import DropdownTest from 'components/DropdownTest'
+import DropdownTestTwo from 'components/DropdownTestTwo'
+
+import styles from './allStatusChart.module.scss'
+import { useAppSelector, useAppDispatch } from 'hooks'
+
+import { setFirstSelect, setSecondSelect } from 'states/dashboard'
 
 const AllStatusChart = () => {
-  const onClick = (num: number, str: ManipulateType | undefined = 'day') => {
-    const { pastDate, toDay } = dateDifference(num, str)
-    console.log(dayjs(pastDate).format('YYYY-MM-DD'))
-    console.log(dayjs(toDay).format('YYYY-MM-DD'))
+  // const onClick = (is: boolean) => {
+  //   setIsWeek(is)
+  // }
+  const fitNowData = useAppSelector((state) => state.dashboard.fitNowData)
+  const firstSelect = useAppSelector((state) => state.dashboard.firstSelect)
+  const secondSelect = useAppSelector((state) => state.dashboard.secondSelect)
+  const weekSelect = useAppSelector((state) => state.dashboard.weekSelect)
+  const [selectedOption, setSelectOption] = useState(firstSelect)
+  const [secondSelectedOption, setSecondSelectOption] = useState(secondSelect)
+  // const [isWeek, setIsWeek] = useState(false)
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setFirstSelect(selectedOption))
+    dispatch(setSecondSelect(secondSelectedOption))
+  }, [selectedOption, secondSelectedOption, dispatch])
+
+  const [firstArr, setFirstArr] = useState<string[] | undefined>()
+  const [secondArr, setSecondArr] = useState<string[] | undefined>()
+
+  const OPTIONS = useMemo(() => ['roas', 'cost', 'imp', 'click', 'conv', 'sales'], [])
+
+  useEffect(() => {
+    const first = OPTIONS.filter((item) => item !== secondSelect)
+    setFirstArr(first)
+    const second = OPTIONS.filter((item) => item !== firstSelect)
+    setSecondArr(second)
+  }, [firstSelect, secondSelect, OPTIONS])
+  const settingData = weekSelect ? fitNowData : getWeekItems(fitNowData)
+  const statData = {
+    roas: settingData.map((item) => {
+      return { x: item.date, y: item.roas }
+    }),
+    cost: settingData.map((item) => {
+      return { x: item.date, y: item.cost }
+    }),
+    imp: settingData.map((item) => {
+      return { x: item.date, y: item.imp }
+    }),
+    click: settingData.map((item) => {
+      return { x: item.date, y: item.click }
+    }),
+    conv: settingData.map((item) => {
+      return { x: item.date, y: item.conv }
+    }),
+    sales: settingData.map((item) => {
+      return { x: item.date, y: item.sales }
+    }),
   }
 
-  //  드롭다운 모듈화 시작----
-  const options = ['Roas', '광고비', '노출수', '클릭수', '전환수', '매출 ']
-  const [dropdown, setDropdown] = useState(false)
-  const [selectItem, setSelectItem] = useState('Roas')
+  const firstStatus = {
+    roas: statData.roas,
+    cost: statData.cost,
+    imp: statData.imp,
+    click: statData.click,
+    conv: statData.conv,
+    sales: statData.sales,
+  }[firstSelect]
+  if (!firstStatus) return null
 
-  const handleClickList = (e: React.MouseEvent<HTMLButtonElement>) => {
-    setSelectItem(e.currentTarget.name)
-    setDropdown(false)
-  }
-  //  드롭다운 모듈화 끝----
+  const secondStatus = {
+    roas: statData.roas,
+    cost: statData.cost,
+    imp: statData.imp,
+    click: statData.click,
+    conv: statData.conv,
+    sales: statData.sales,
+  }[secondSelect]
+  if (!secondStatus) return null
 
   return (
-    <div className={styles.chart}>
-      {/* 드롭다운 모듈화 시작---- */}
-      <div className={styles.dropdown}>
-        <button type='button' onClick={() => setDropdown(!dropdown)}>
-          <div className={styles.select}>
-            <span>{selectItem}</span>
-            <ArrowDown />
+    <div className={styles.chartWrapper}>
+      <div className={styles.optionWrapper}>
+        <div className={styles.dropdownWrapper}>
+          <div className={styles.leftDropdown}>
+            <DropdownTest isSecond={false} dataArr={firstArr} selected={firstSelect} setSelected={setSelectOption} />
+            <DropdownTest isSecond dataArr={secondArr} selected={secondSelect} setSelected={setSecondSelectOption} />
           </div>
-        </button>
-        <ul className={cx(styles.dropdownList, dropdown && styles.active)}>
-          {options.map((item) => {
-            return (
-              <li key={item}>
-                <button type='button' name={item} onClick={handleClickList}>
-                  {item}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+          <div className={styles.rightDropdown}>
+            <DropdownTestTwo />
+          </div>
+        </div>
       </div>
-      {/* 드롭다운 모듈화 끝---- */}
-
-      <button type='button' onClick={() => onClick(7)}>
-        일간
-      </button>
-      <button type='button' onClick={() => onClick(1, 'month')}>
-        월간
-      </button>
-      <button type='button' onClick={() => onClick(2, 'month')}>
-        주간
-      </button>
-      <div>
-        <StatusChart />
+      <div className={styles.chart}>
+        <StatusChart data={[firstStatus, secondStatus]} />
       </div>
     </div>
   )
 }
-
 export default AllStatusChart

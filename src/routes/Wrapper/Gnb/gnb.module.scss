@@ -2,6 +2,10 @@
 @use '/src/styles/constants/colors';
 
 .gnbWrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
   width: 320px;
   padding: 60px 40px;
   background: #ffffff;
@@ -88,68 +92,125 @@
     }
   }
 
-  footer {
-    margin-top: 260px;
+  .navBottom {
+    position: absolute;
+    bottom: 40px;
+    width: 240px;
 
-    .guide {
-      display: flex;
-      width: 240px;
-      height: 100px;
+    p {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 14px;
+      color: colors.$GRAY300;
+    }
+
+    .guidWrap {
+      width: 100%;
       padding: 30px 20px;
       margin-bottom: 40px;
       background-color: #e5f4fd;
       border-radius: 10px;
 
       .guideIcon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: inline-block;
         width: 40px;
         height: 40px;
-        margin-right: 8px;
+        padding-top: 8px;
+        text-align: center;
         background-color: #586cf5;
-        border-radius: 50%;
+        border-radius: 20px;
       }
 
       .guideContent {
-        p {
+        display: inline-block;
+        margin-left: 10px;
+        vertical-align: top;
+
+        .gutidBigText {
           margin-bottom: 7px;
           font-size: 16px;
-          font-style: normal;
           font-weight: 700;
-          line-height: 19px;
-          color: #3a474e;
-        }
-
-        span {
-          font-size: 12px;
-          font-style: normal;
-          font-weight: 500;
-          line-height: 14px;
-          color: #94a2ad;
+          color: colors.$GRAY800;
         }
       }
     }
 
     .agreement {
-      padding-left: 20px;
+      padding: 0 20px;
 
-      p {
+      .link {
+        display: inline-block;
+        margin-top: 10px;
         font-size: 12px;
-        font-style: normal;
         font-weight: 500;
         line-height: 14px;
-        color: #94a2ad;
-      }
-
-      span {
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 14px;
-        color: #94a2ad;
+        color: colors.$GRAY300;
         text-decoration: underline;
       }
     }
   }
+
+  //   footer {
+  //     margin-top: 260px;
+
+  //     .guide {
+  //       // display: flex;
+  //       width: 240px;
+  //       height: 100px;
+  //       padding: 30px 20px;
+  //       margin-bottom: 40px;
+  //       background-color: #e5f4fd;
+  //       border-radius: 10px;
+
+  //       .guideIcon {
+  //         display: flex;
+  //         align-items: center;
+  //         justify-content: center;
+  //         width: 40px;
+  //         height: 40px;
+  //         margin-right: 8px;
+  //         background-color: #586cf5;
+  //         border-radius: 50%;
+  //       }
+
+  //       .guideContent {
+  //         p {
+  //           margin-bottom: 7px;
+  //           font-size: 16px;
+  //           font-style: normal;
+  //           font-weight: 700;
+  //           line-height: 19px;
+  //           color: #3a474e;
+  //         }
+
+  //         span {
+  //           font-size: 12px;
+  //           font-style: normal;
+  //           font-weight: 500;
+  //           line-height: 14px;
+  //           color: #94a2ad;
+  //         }
+  //       }
+  //     }
+
+  //     .agreement {
+  //       padding-left: 20px;
+
+  //       p {
+  //         font-size: 12px;
+  //         font-style: normal;
+  //         font-weight: 500;
+  //         line-height: 14px;
+  //         color: #94a2ad;
+  //       }
+
+  //       span {
+  //         font-size: 12px;
+  //         font-style: normal;
+  //         font-weight: 500;
+  //         line-height: 14px;
+  //         color: #94a2ad;
+  //         text-decoration: underline;
+  //       }
+  //     }
 }

@@ -3,7 +3,6 @@ export interface IItems {
 }
 
 export interface IItem {
-  // [key: string]: string
   imp: number
   click: number
   cost: number
@@ -19,11 +18,21 @@ export interface IItem {
 }
 
 export interface IItemResult {
-  // [key: string]: string
   roas: number
   cost: number
   imp: number
   click: number
   conv: number
   sales: number
+  date: string
+}
+
+export interface IItemDateResult {
+  roas: number
+  cost: number
+  imp: number
+  click: number
+  conv: number
+  sales: number
+  date: string
 }

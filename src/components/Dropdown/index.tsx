@@ -1,7 +1,7 @@
 import styles from './dropdown.module.scss'
-import { ArrowDown } from '../../assets/svgs'
+import { ArrowDown } from 'assets/svgs'
 import React, { useEffect, useRef, useState } from 'react'
-import { cx } from '../../styles'
+import { cx } from 'styles'
 
 const Dropdown = () => {
   const [dropdown, setDropdown] = useState(false)

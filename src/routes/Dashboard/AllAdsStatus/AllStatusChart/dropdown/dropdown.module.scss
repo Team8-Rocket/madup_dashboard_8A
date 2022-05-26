@@ -1,0 +1,49 @@
+// @use '/src/styles/constants/colors';
+
+// .dropdownButton {
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 123px;
+//   height: 40px;
+//   padding: 12px 16px 12px 40px;
+//   font-size: 14px;
+//   line-height: 14px;
+//   color: colors.$GRAY300 !important;
+//   border: 1px solid colors.$GREY100;
+//   border-radius: 10px;
+
+//   &::after {
+//     position: absolute;
+//     left: 20px;
+//     width: 10px;
+//     height: 10px;
+//     content: '';
+//     background-color: colors.$GRAY800;
+//     border-radius: 50%;
+//   }
+// }
+
+// .dropdownMenu {
+//   position: absolute;
+//   z-index: 1;
+//   max-width: 240px;
+//   margin-top: 3px;
+//   background-color: colors.$WHITE;
+//   border: 1px solid colors.$GREY100;
+//   border-radius: 10px;
+//   box-shadow: 0 10px 20px rgba(41, 50, 55, 15%);
+
+//   .dropdownList {
+//     width: 123px;
+//     height: 40px;
+//     padding: 0 12px;
+//     line-height: 40px;
+//     border-radius: 10px;
+//   }
+
+//   .disabled {
+//     color: colors.$GRAYA;
+//   }
+// }

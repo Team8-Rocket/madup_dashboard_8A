@@ -6,6 +6,10 @@ const CHART_STYLE = {
     barWidth: 30,
     x: 'category',
     y: 'value',
+    // labels: {
+    //   fontSize: 15,
+    //   fill: '#c43a31',
+    // },
   },
 }
 

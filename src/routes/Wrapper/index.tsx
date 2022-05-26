@@ -1,5 +1,5 @@
 import Skeleton from 'components/Skeleton'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { useLocation } from 'react-use'
 import Gnb from './Gnb'
@@ -10,7 +10,7 @@ const Wrapper = () => {
   const { pathname } = useLocation()
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    setLoading(true)
+    setLoading(false)
     setTimeout(() => {
       setLoading(false)
     }, 500)
@@ -23,6 +23,7 @@ const Wrapper = () => {
       </aside>
       <main className={styles.content}>
         <UserOption />
+        {/* <Outlet /> */}
         {loading ? <Skeleton pathname={pathname} /> : <Outlet />}
       </main>
     </div>

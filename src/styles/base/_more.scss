@@ -8,17 +8,17 @@
   outline: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  -ms-overflow-style: none; // IE and Edge
-  scrollbar-width: none; // Firefox
+  // -ms-overflow-style: none; // IE and Edge
+  // scrollbar-width: none; // Firefox
 
   &::before,
   &::after {
     box-sizing: border-box;
   }
 
-  &::-webkit-scrollbar {
-    display: none; // Chrome
-  }
+  // &::-webkit-scrollbar {
+  //   display: none; // Chrome
+  // }
 }
 
 img {

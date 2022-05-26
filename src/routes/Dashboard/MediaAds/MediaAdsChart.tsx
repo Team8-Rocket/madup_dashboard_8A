@@ -38,7 +38,7 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
     return data
   }
 
-  const getFuck = () => {
+  const getFilterData = () => {
     const google = dateFilterData.filter((item: { channel: string }) => {
       return item.channel === 'google'
     })
@@ -66,7 +66,7 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
 
   const tickFormat = ['광고비', '매출', '노출 수', '클릭 수', '전환 수']
 
-  const { resultNaver, resultKakao, resultFacebook, resultGoogle, total } = getFuck()
+  const { resultNaver, resultKakao, resultFacebook, resultGoogle, total } = getFilterData()
 
   const percentCalculation = (arr: Record<string, { value: number; category: string }[]>) => {
     const percent: { value: number; category: string }[] = []
@@ -77,11 +77,15 @@ const MediaAdsChart = ({ dateFilterData }: Props) => {
   }
   return (
     <div className={styles.mediaAdChartWrap}>
-      <VictoryChart width={900} theme={VictoryTheme.material} domainPadding={20}>
+      <VictoryChart width={900} theme={VictoryTheme.material} domainPadding={40}>
         <VictoryAxis tickValues={tickFormat} tickFormat={tickFormat} />
         <VictoryAxis
+          style={{
+            axis: { stroke: 'transparent' },
+            ticks: { stroke: 'transparent' },
+            tickLabels: { fontSize: 12, padding: 5 },
+          }}
           dependentAxis
-          // tickFormat specifies how ticks should be displayed
           tickFormat={(x) => `${x * 100}%`}
         />
         <VictoryStack colorScale={['#AC8AF8', '#85DA47', '#4FADF7', '#FFEB00']}>

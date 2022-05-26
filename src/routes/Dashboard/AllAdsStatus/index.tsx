@@ -6,7 +6,7 @@ import styles from './allAdsStatus.module.scss'
 const Integrated = () => {
   return (
     <div className={styles.container}>
-      <h1>통합 광고 현황</h1>
+      <h2>통합 광고 현황</h2>
       <div className={styles.contents}>
         <Period />
         <AllStatusChart />
