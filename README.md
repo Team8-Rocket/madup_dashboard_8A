@@ -71,6 +71,9 @@ $ yarn start
     - 막대 그래프 매체 현황 구현
 - 전체, 진행중, 중단됨 상태에 따른 웹/앱 광고 카드 구현
 
+NOTICE
+페어프로그래밍 (Live Share 사용) 함께한 명단 : zellytozelly / lumpenop 
+
 
 ---
 
